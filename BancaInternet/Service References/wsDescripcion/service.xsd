@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/BancaInternet.EN" />
+  <xs:import namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="WSListarValoresParametros">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iIdDominio" type="xs:int" />
+        <xs:element minOccurs="0" name="bCerrar" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarValoresParametrosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSListarValoresParametrosResult" nillable="true" type="q1:ArrayOfenDescripcion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSObtenerArchivosHomeBanking">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iValor1" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSObtenerArchivosHomeBankingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="WSObtenerArchivosHomeBankingResult" nillable="true" type="q2:ArrayOfstring" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarValoresParametrosSiscredinka">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="iValor1" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarValoresParametrosSiscredinkaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSListarValoresParametrosSiscredinkaResult" nillable="true" type="q3:ArrayOfenDescripcionSiscredinka" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSBusquedaActividadesEconomicasCIIU">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sValor2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSBusquedaActividadesEconomicasCIIUResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSBusquedaActividadesEconomicasCIIUResult" nillable="true" type="q4:ArrayOfenDescripcionSiscredinka" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSAfiliacionBusquedaActividadesCIIU">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="sValor2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSAfiliacionBusquedaActividadesCIIUResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSAfiliacionBusquedaActividadesCIIUResult" nillable="true" type="q5:ArrayOfenDescripcionSiscredinka" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

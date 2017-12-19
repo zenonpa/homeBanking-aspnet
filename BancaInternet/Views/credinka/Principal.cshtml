@@ -1,0 +1,115 @@
+﻿@{
+    ViewBag.Title = "Credinka :: Banca por Internet";
+}
+
+@using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, new { id = "_post_body_" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+    <input type="hidden" name="_form_name" id="_form_name" value="@ViewBag.form_interno">
+    <input type="hidden" name="hddevent1" id="hddevent1" value="0">
+    <input type="hidden" name="hddevent2" id="hddevent2" value="0">
+    <input type="submit" name="hddsubmit_b" id="hddsubmit_b" style="display:none;" />
+
+    <div class="css-container-principal css-container-color css-border">
+        <div class="col-xs-1">
+            <i class="fa fa-home fa-3x" style="color:#EA6C1D;"></i>
+        </div>
+        <div class="col-xs-6 css-title">
+            <span class="css-title-text">@ViewBag.sTituloOpcion</span> <br />
+            <span class="css-title-subtext">@ViewBag.nombre @ViewBag.apellidos</span>
+        </div>
+        <div class="col-xs-2 pull-right css-border-left">
+            <a href="#" id="aSeSe"><img style="width:90px;height:70px;" src="@ViewBag.imagenContenido"></a>
+        </div>
+    </div>
+
+    <div class="css-container-principal css-margin" id="conteiner">
+        <div class="pull-right option">
+            <a href="#" title="Imprimir" class="css-ico" onclick="printDocument.print($('#conteiner'))"><i class="fa fa-print fa-lg" style="color:#898989;"></i></a>
+            <a href="#" title="Exportar PDF" class="css-ico" onclick="fn_ir(4,0)"><i class="fa fa-file-pdf-o fa-lg" style="color:#F0877B;"></i></a>
+            <!-- <a href="#" id="ex_x_d_f" title="Exportar Excel" class="css-ico"><i class="fa fa-file-excel-o fa-lg" style="color:#1D804C;"></i></a>
+                -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span><span class="css-text-title-option">MIS AHORROS</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-list" width="96%">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Tipo de Producto</th>
+                            <th class="text-center">Nro de Cuenta/Operación</th>
+                            <th class="text-center">Saldo</th>
+                            <th class="text-center">Estado</th>
+                            <th class="text-center">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var reg in ViewBag.ListaCuentas)
+                        {
+                            <tr>
+                                <td class="text-left">@reg.sNombreProducto</td>
+                                <td class="text-center">@reg.sNumeroCuenta</td>
+                                <td class="text-right">@reg.sSaldo</td>
+                                <td class="text-center">@reg.sCodigoEstado</td>
+                                <td class="text-center option"><a href="#" onclick="fn_ir(1,'@reg.sNumeroCuenta')"><i class="fa fa-search" aria-hidden="true"></i></a></td>
+                            </tr>
+                        }
+                        @if (ViewBag.ListaCuentas.Count == 0)
+                        { 
+                           <tr><td colspan="5"><center><small>No existen productos</small></center></td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span>
+                <span class="css-text-title-option">MIS PRÉSTAMOS</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-list" width="96%">
+                    <thead>
+                        <tr>
+                            <th class="text-left">Tipo de Producto</th>
+                            <th class="text-center">Nro de Cuenta/Operación</th>
+                            <th class="text-center">Monto Capital</th>
+                            <th class="text-center">Estado del préstamo</th>
+                            <th class="text-center">Detalle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var reg in ViewBag.ListaPrestamos)
+                        {
+                            <tr>
+                                <td class="text-left">@reg.sNombreProducto</td>
+                                <td class="text-center">@reg.sNumeroCredito</td>
+                                <td class="text-right">@reg.sSaldoCapital</td>
+                                <td class="text-center">@reg.sCodigoEstado</td>
+                                <td class="text-center option"><a href="#" onclick="fn_ir(2,'@reg.sNumeroCredito')"><i class="fa fa-search" aria-hidden="true"></i></a></td>
+                            </tr>
+                        }
+                        @if (ViewBag.ListaPrestamos.Count == 0)
+                        {
+                            <tr><td colspan="5"><center><small>No existen productos</small></center></td></tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+}

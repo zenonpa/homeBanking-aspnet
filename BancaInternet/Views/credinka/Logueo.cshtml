@@ -1,0 +1,355 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@using BancaInternet
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Credinka :: Banca por Internet</title>
+
+    <meta name="description" content="HomeBanking">
+    <meta name="author" content="Credinka S.A.">
+    <link rel="HomeBanking" type="image/x-icon" href="/favicon.ico" />
+
+    @Styles.Render("~/credinka/cssIngreso")
+    @Scripts.Render("~/credinka/jsIngreso")
+
+    <style>
+        @@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+        @@font-face {
+            font-family: 'FontAwesome';
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @@font-face {
+            font-family: 'Glyphicons Halflings';
+            src: url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.eot');
+            src: url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.woff') format('woff'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+        }
+
+    </style>
+
+
+    <script type="text/javascript">
+        var VG_RUTA_SERVIDOR = "@Url.Content("~")";
+    </script>
+</head>
+<body class="noselect">
+    <div class="css-lineaSuperior"></div>
+    <div class="wrap">
+        <div class="container css-container-center">
+            <div class="css-banner-top">
+                <img class="css-banner-image" src="~/Content/Images/logo-intranet.png">
+                <span class="css-banner-text">Banca por Internet</span>
+                <span class="css-text-contador"><i class="fa fa-clock-o"></i> <span id="spseconds"></span> segundos para cerrar esta ventana</span>
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="css-container-principal-2x">
+                        <div class="col-xs-3 css-fondo-blanco css-container-look">
+                            <div class="css-img-look">
+                                <i class="fa fa-lock fa-2x" style="color:#F58B52;"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-5 css-fondo-blanco css-container-title-text">
+                            <div class="col-xs-12">
+                                <div class="css-title-text"> Acceder a mis Ahorros</div>
+                            </div>
+                        </div>
+                        <div class="col-xs-4">
+                        </div>
+                        <div class="row css-row-margin0">
+                            <div class="col-xs-12 css-fondo-blanco">
+                                <div class="css-container-form">
+                                    @using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post,new { id = "__AjaxAntiForgeryForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+                                        <input type="hidden" id="hddpin" name="hddpin">
+                                        @Html.Hidden(MvcApplication.MultipleParameterKey, 0)
+                                        <div role="form">
+                                            <br />
+                                            <div class="form-group col-lg-12">
+                                                <label for="sel1"><strong>Identificación</strong></label>
+                                                @Html.DropDownList("selectTarjeta", (SelectList)ViewBag.lista1, new { @class = "form-control css-input-select-tarjeta" })
+                                            </div>
+                                            <div class="form-group col-lg-10">
+                                                <div class="input-group">
+                                                    <input autocomplete="off" autocorrect="off" id="txtcaja1" name="txtcaja1" value-text="1" 
+                                         type="text" class="input form-control css-caja-text-tarjeta">
+                                                    <input autocomplete="off" autocorrect="off" id="txtcaja2" name="txtcaja2" value-text="2" maxlength="4" type="text" class="input form-control css-caja-text-tarjeta">
+                                                    <input autocomplete="off" autocorrect="off" id="txtcaja3" name="txtcaja3" value-text="3" maxlength="4" type="text" class="input form-control css-caja-text-tarjeta">
+                                                    <input autocomplete="off" autocorrect="off" id="txtcaja4" name="txtcaja4" value-text="4" maxlength="4" type="text" class="input form-control css-caja-text-tarjeta">
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <div class="row">
+                                                    <div role="form">
+                                                        <div class="form-group form-group-title col-lg-12">
+                                                            <label for="sel1"><strong>Clave de Acceso (6 dígitos)</strong></label>
+                                                        </div>
+                                                        <div class="form-group col-lg-12">
+                                                            <div class="pull-left">
+                                                                <div class="row">
+                                                                    <div class="col-xs-5">
+                                                                        <img src="data:image;base64,@System.Convert.ToBase64String(ViewBag.ruta.FileContents)" alt="" usemap="#Map" />
+                                                                        <map name="Map" id="Map">
+                                                                            <area href="javascript: fn_codping(0)" shape="rect" coords="10,7,23,24" />
+                                                                            <area href="javascript: fn_codping(1)" shape="rect" coords="36,7,50,24" />
+                                                                            <area href="javascript: fn_codping(2)" shape="rect" coords="61,6,77,24" />
+                                                                            <area href="javascript: fn_codping(3)" shape="rect" coords="8,31,22,47" />
+                                                                            <area href="javascript: fn_codping(4)" shape="rect" coords="35,31,51,48" />
+                                                                            <area href="javascript: fn_codping(5)" shape="rect" coords="62,30,76,48" />
+                                                                            <area href="javascript: fn_codping(6)" shape="rect" coords="8,55,22,70" />
+                                                                            <area href="javascript: fn_codping(7)" shape="rect" coords="36,55,50,72" />
+                                                                            <area href="javascript: fn_codping(8)" shape="rect" coords="62,55,77,72" />
+                                                                            <area href="javascript: fn_codping(9)" shape="rect" coords="61,80,77,95" />
+                                                                            <area href="javascript: fn_codping(-1)" shape="rect" coords="6,79,54,96" />
+                                                                        </map>
+                                                                    </div>
+                                                                    <div class="col-xs-6 css-div-pwd">
+                                                                        <br />
+                                                                        <input type="password" id="psdclave" value="" name="psdclave" class="form-control pull-left css-caja-text-pwd css-input" disabled />
+                                                                        <p class="list-group-item-text css-text-mensaje">Ingresa tu clave utilizando el teclado virtual</p>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-lg-12">
+                                                <div class="row">
+                                                    <div role="form">
+                                                        <div class="form-group form-group-title col-lg-12">
+                                                            <label for="sel1"><strong>Ingresa el texto de la imagen</strong></label>
+                                                        </div>
+                                                        <div class="form-group col-lg-12 form-group-margin0">
+                                                            <div class="pull-left">
+                                                                <div class="row">
+                                                                    <div class="col-xs-12 css-div-capcha">
+                                                                        @Html.Captcha("Actualizar Imagen", null, 5, "Debe ingresar el texto.", true, new ParameterModel(MvcApplication.MultipleParameterKey, 0))
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <hr class="css-divisor" />
+                                            <div class="form-group col-lg-12">
+                                                <div class="row">
+                                                    <div role="form">
+                                                        <div class="pull-right css-btn-ingresar">
+                                                            <button type="submit" id="btnsubmit" class="btn btn-sm btn-primary">Ingresar <i class="fa fa-arrow-right"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="css-container-principal">
+                                <div class="container-carusel">
+                                    <div id="carousel-images" class="carousel slide" data-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            @{int numero = 0;}
+                                            @foreach (var reg in ViewBag.imgDimanic)
+                                            {
+                                                <li data-target="#carousel-images" data-slide-to="@numero" class=""></li>
+                                                numero++;
+                                            }
+                                        </ol>
+                                        <div class="carousel-inner" role="listbox">
+                                            @foreach (var reg in ViewBag.imgDimanic)
+                                            {
+                                                <div class="item">
+                                                    <img class="img-responsive" style="width: 610px; height:360px;" src="@reg" data-holder-rendered="true">
+                                                </div>
+                                            }
+                                        </div>
+                                        <a class="left carousel-control" href="#carousel-images" role="button" data-slide="prev">
+                                            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+                                            <span class="sr-only">Anterior</span>
+                                        </a>
+                                        <a class="right carousel-control" href="#carousel-images" role="button" data-slide="next">
+                                            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+                                            <span class="sr-only">Siguiente</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <a data-toggle="modal" id="rdModal2" data-target="#myModal2">
+                            <div class="col-xs-4">
+                                <div class="css-container-principal-option">
+                                    <div class="css-container-option">
+                                        <div class="option-arrow-img-ir"><i class="fa fa-arrow-circle-right fa-2x"></i></div>
+                                        <div class="option-img">
+                                            <img class="img-black" src="~/Content/Images/ico-ovd-clave-o.png" data-holder-rendered="true">
+                                            <img class="img-white" src="~/Content/Images/ico-ovd-clave.png" data-holder-rendered="true">
+                                        </div>
+                                        <div class="option-text">Generar mi Clave</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a data-toggle="modal" data-target="#myModal1" id="dvOlvide">
+                            <div class="col-xs-4">
+                                <div class="css-container-principal-option">
+                                    <div class="css-container-option">
+                                        <div class="option-arrow-img-ir"><i class="fa fa-arrow-circle-right fa-2x"></i></div>
+                                        <div class="option-img">
+                                            <img class="img-black" class="img-responsive" src="~/Content/Images/ico-clave-o.fw.png" data-holder-rendered="true">
+                                            <img class="img-white" class="img-responsive" src="~/Content/Images/ico-clave-.png" data-holder-rendered="true">
+                                        </div>
+                                        <div class="option-text">Olvidé mi Clave</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                        <a href="#" data-keyboard="true" id="hrefPF">
+                            <div class="col-xs-4">
+                                <div class="css-container-principal-option">
+                                    <div class="css-container-option">
+                                        <div class="option-arrow-img-ir"><i class="fa fa-arrow-circle-right fa-2x"></i></div>
+                                        <div class="option-img">
+                                            <img class="img-black" class="img-responsive" src="~/Content/Images/ico-faq-o.png" data-holder-rendered="true">
+                                            <img class="img-white" class="img-responsive" src="~/Content/Images/ico-faq.png" data-holder-rendered="true">
+                                        </div>
+                                        <div class="option-text">Preguntas Frecuentes</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-12">
+                    @*<span class="css-text-mensaje"><i class="fa fa-clock-o"></i> <span id="spseconds"></span> segundos para cerrar esta ventana</span>*@
+                    <input type="hidden" id="hddsecond" value="@ViewBag.key_TimerCerrar">
+                    @*<input type="hidden" id="hddsecond" value="123456789123456">*@
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div id="myModal1" class="modal fade" data-dismiss="static" role="dialog" data-keyboard="true" data-backdrop="static">
+                <div class="modal-dialog modal-md" style="max-width:400px;">
+                    <div class="modal-content css-modal-form">
+                        @using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, "enctype='application/x-www-form-urlencoded'"))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+                            <input type="hidden" id="hddcod" name="hddcod" value="1">
+                            @Html.Hidden(MvcApplication.MultipleParameterKey, 1)
+                            <div class="modal-header css-modal-form-header">
+                                <div class="modal-title">
+                                    <i class="fa fa-envelope fa-3x pull-left" style="color:#F58B52;"></i>
+                                    <span class="css-modal-title">Recuperar Clave de Internet</span>
+                                    <br />
+                                    <span class="css-modal-sub-title">Olvidé mi clave</span>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-12 css-text-sub-title">
+                                            <p><h6>Si olvidaste tu Clave de Internet (6 dígitos) ingresa los siguientes datos para recuperarla.</h6></p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-xs-12">
+                                        <label for="sel1"><strong>Tipo de Documento</strong></label>
+                                        @Html.DropDownList("selectTipo", (SelectList)ViewBag.lista2, new { @class = "form-control css-input-select-tarjeta" })
+                                    </div>
+
+                                    <div class="form-group col-xs-8">
+                                        <label for="sel1"><strong>Número de Documento</strong></label>
+                                        <input type="text" class="input form-control css-form-control" name="txtdocumento" id="txtdocumento" autocomplete="off" autocorrect="off">
+                                    </div>
+                                    <div class="form-group col-xs-8">
+                                        <label for="sel1"><strong>Correo Electrónico</strong></label>
+                                        <input type="text" class="input form-control css-form-control" name="txtemail" id="txtemail" autocomplete="off" autocorrect="off">
+                                    </div>
+
+                                    <div class="form-group col-xs-8">
+                                        <div class="col-xs-12">
+                                            <label for="sel1"><strong>Ingresa el texto de la imagen</strong></label>
+                                        </div>
+                                        <div class="col-xs-12 css-div-capcha">
+                                            @Html.Captcha("Actualizar Imagen", null, 5, "Debe ingresar el texto.", true, new ParameterModel(MvcApplication.MultipleParameterKey, 1))
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer css-modal-form-footer">
+                                <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close1">Cerrar</button>
+                                <button type="submit" id="btnOlvide" class="btn btn-xs btn-primary">Enviar</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal Generar Clave :: Paso 1 -->
+            <div id="myModal2" class="modal fade" data-dismiss="static" role="dialog" data-keyboard="true" data-backdrop="static">
+                <div class="modal-dialog modal-md">
+                    <div id="dvContent" class="modal-content css-modal-form">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-md css-modal-timer">
+                    <div class="modal-content css-modal-border-redondo">
+                        <div class="modal-header css-modal-header">
+                            <div class="modal-title css-modal-title-text">
+                                Banca por Internet
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="css-modal-timer-text text-justify">
+                                        <i class="pull-left fa fa-exclamation-circle fa-4x" style="color: #F56868"></i>
+                                        <span id="hddMessage">@TempData["Message"]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer css-modal-footer">
+                            <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="container">
+                <span class="footer-opcion"><small>Credinka.com</small></span>|
+                <span class="pull-right footer-copyright"><small>© 2017 FINANCIERA CREDINKA. Todos los derechos reservados</small></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

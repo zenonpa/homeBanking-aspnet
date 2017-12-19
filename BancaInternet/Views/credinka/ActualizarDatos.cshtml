@@ -1,0 +1,1346 @@
+﻿@model BancaInternet.EN.enUsuario
+
+@{
+    ViewBag.Title = "Credinka :: Banca por Internet";
+}
+@Styles.Render("~/credinka/cssDatos")
+@Scripts.Render("~/credinka/jsDatos")
+@using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, new { id = "_Action_event_ForgeryToken" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+    <input type="hidden" name="_form_name" value="@ViewBag.Form_Interno">
+    <div class="css-container-principal css-container-color css-border">
+        <div class="col-xs-1">
+            <i class="fa fa-pencil-square fa-3x" style="color:#EA6C1D;"></i>
+        </div>
+        <div class="col-xs-6 css-title">
+            <span class="css-title-text">Actualización de Datos</span><br />
+            <span class="css-title-subtext-1x"><strong>Nombre: </strong>@ViewBag.nombre @ViewBag.apellidos</span><br />
+            <span class="css-title-subtext-1x"><strong>DNI: </strong>@ViewBag.poenUsuario.sNumeroDocumento</span>
+        </div>
+        <div class="col-xs-2 pull-right css-border-left">
+            <a href="#" id="aSeSe"><img style="width:90px;height:70px;" src="@ViewBag.imagenContenido"></a>
+        </div>
+    </div>
+
+    <div class="css-container-principal css-margin">
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span><span class="css-text-title-option">Datos Personales</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-detalle">
+                    <tbody>
+                        <tr>
+                            <td class="cabecera">
+                                <div class="col-input-4 css-padding-right">
+                                    Primer Nombre<br />
+                                    <input type="text" maxlength="40" class="css-input" id="txtNombre" name="txtNombre" value="@ViewBag.poenUsuario.sPrimerNombre">
+                                </div>
+                                <div class="col-input-4 css-padding-right">
+                                    Segundo Nombre<br />
+                                    <input type="text" maxlength="40" class="css-input" id="txtNombre1" name="txtNombre1" value="@ViewBag.poenUsuario.sSegundoNombre">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">
+                                <div class="col-input-4 css-padding-right">
+                                    Apellido Paterno<br />
+                                    <input type="text" maxlength="40" class="css-input" id="txtApep" name="txtApep" value="@ViewBag.poenUsuario.sApellidoPaterno">
+                                </div>
+                                <div class="col-input-4 css-padding-right">
+                                    Apellido Materno<br />
+                                    <input type="text" maxlength="40" class="css-input" id="txtApem" name="txtApem" value="@ViewBag.poenUsuario.sApellidoMaterno">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">
+                                <div class="col-input-3 css-padding-right">
+                                    Tipo de DOI<br />
+                                    <select class="css-input" disabled>
+                                        <option selected>@ViewBag.poenUsuario.sTipoDocumento</option>
+                                    </select>
+                                </div>
+                                <div class="col-input-3 css-padding-right">
+                                    N° de DOI<br />
+                                    <input type="text" class="css-input" id="txtNDOI" name="txtNDOI" value="@ViewBag.poenUsuario.sNumeroDocumento" disabled>
+                                </div>
+                                <div class="col-input-3 css-padding-right">
+                                    Fecha de Nacimiento<br />
+                                    <input type="text" class="css-input" id="txtfecNac" name="txtfecNac" data-provide="datepicker" data-date-end-date="-18y" value="@ViewBag.poenUsuario.sFechaNacimiento" readonly>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabecera">
+                                    Lugar de Nacimiento 
+                                </div>
+                                <div class="col-input-3 css-padding-right">
+                                    Departamento<br />
+                                    @Html.DropDownList("selectNacDep", (SelectList)ViewBag.list1, new { @data = "1", @class = "css-input" })
+                                </div>
+                                <div class="col-input-4 css-padding-right">
+                                    Provincia<br />
+                                    @Html.DropDownList("selectNacPro", (SelectList)ViewBag.list2, new { @data = "0", @class = "css-input" })
+                                </div>
+                                <div class="col-input-4 css-padding-right">
+                                    Distrito<br />
+                                    @Html.DropDownList("selectNacDis", (SelectList)ViewBag.list3, new { @class = "css-input" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col-input-3 css-padding-right">
+                                    <span class="cabecera">Tipo de Vía</span><br />
+                                    @Html.DropDownList("selectTipoVia", (SelectList)ViewBag.listV, new { @data = "1", @class = "css-input" })
+                                </div>
+                                <div class="cabecera col-input-4 css-padding-right">
+                                    Dirección <br />
+                                    <input type="text" maxlength="160" class="css-input" id="txtDirP" value="@ViewBag.poenUsuario.sDireccion" name="txtDirP">
+                                </div>
+                                <div class="cabecera col-input-2 css-padding-right">
+                                    Nro <br />
+                                    <input type="text" maxlength="5" class="css-input" id="txtnro" value="@ViewBag.poenUsuario.sNroVia" name="txtnro">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabecera col-input-8 css-padding-right">
+                                    Referencia <br />
+                                    <input type="text" maxlength="140" class="css-input" id="txtRefP" name="txtRefP" value="@ViewBag.poenUsuario.sReferenciaUbicacion">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="col-input-3 css-padding-right">
+                                    <span class="cabecera">Tipo de Zona</span><br />
+                                    @Html.DropDownList("selectTipoZona", (SelectList)ViewBag.listZ, new { @data = "1", @class = "css-input" })
+                                </div>
+                                <div class="cabecera col-input-4 css-padding-right">
+                                    Nombre de Zona<br />
+                                    <input type="text" maxlength="100" class="css-input" id="txtZona" value="@ViewBag.poenUsuario.sNombreZona" name="txtZona">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabecera">
+                                    Ubigeo de Dirección
+                                </div>
+                                <div class="col-input-3 css-padding-right">
+                                    Departamento<br />
+                                    @Html.DropDownList("selectDirDep", (SelectList)ViewBag.list4, new { @data = "1", @class = "css-input" })
+                                </div>
+                                <div class="col-input-4 css-padding-right">
+                                    Provincia<br />
+                                    @Html.DropDownList("selectDirPro", (SelectList)ViewBag.list5, new { @data = "0", @class = "css-input" })
+                                </div>
+                                <div class="col-input-4 css-padding-right">
+                                    Distrito<br />
+                                    @Html.DropDownList("selectDirDis", (SelectList)ViewBag.list6, new { @class = "css-input" })
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">
+                                <div class="col-input-4 css-padding-right">
+                                    Correo Electrónico<br />
+                                    <input type="text" maxlength="80" class="css-input" id="txtEmail" name="txtEmail" value="@ViewBag.poenUsuario.sEmail">
+                                </div>
+                                <div class="col-input-3 css-padding-right">
+                                    Número Telefónico<br />
+                                    <input type="text" maxlength="12" class="css-input col-input-2" id="txtNumero" name="txtNumero" maxlength="9" value="@ViewBag.poenUsuario.nNumeroCasa">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="css-div-line">
+                                    <span class="cabecera">Tipo de Ingresos</span><br />
+                                                                        @if (ViewBag.poenUsuario.sCodigoRelacionLaboral == "00")
+                                    {
+                                        <input type="radio" name="RelacionIngreso" id="RelacionIngreso1" value="02" checked><span class="css-text-radio">Dependiente</span>
+                                        <span>&nbsp; &nbsp; &nbsp;</span><input type="radio" name="RelacionIngreso2" id="rClave1" value="01" ><span class="css-text-radio">Independiente</span>
+                                    }
+                                    else if (ViewBag.poenUsuario.sCodigoRelacionLaboral == "01")
+                                    {
+                                        <input type="radio" name="RelacionIngreso" id="RelacionIngreso1" value="02"><span class="css-text-radio">Dependiente</span>
+                                        <span>&nbsp; &nbsp; &nbsp;</span><input type="radio" name="RelacionIngreso" id="RelacionIngreso2" value="01" checked><span class="css-text-radio">Independiente</span>
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" name="RelacionIngreso" id="RelacionIngreso1" value="02" checked><span class="css-text-radio">Dependiente</span>
+                                        <span>&nbsp; &nbsp; &nbsp;</span><input type="radio" name="RelacionIngreso" id="RelacionIngreso2" value="01"><span class="css-text-radio">Independiente</span>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div id="dvDLD" style="display:none;">
+            <div class="row">
+                <div class="col-lg-12 css-margin-top">
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                        <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                    </span>
+                    <span class="css-text-title-option">Datos Laborales (Dependiente)</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table-responsive css-table-detalle">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cabecera col-input-8 css-padding-right">
+                                        Razón social del Empleador<br />
+                                        <input type="text" maxlength="100" class="css-input" id="txtRazon" name="txtRazon" value="@ViewBag.poenUsuario.sRazonSocial">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="col-input-5 css-padding-right">
+                                        <span class="cabecera">Cargo</span><br />
+                                        @Html.DropDownList("selectCargos", (SelectList)ViewBag.Cargos, new { @class = "css-input" })
+                                    </div>
+                                    <div class="cabecera col-input-3 css-padding-right">
+                                        Fecha de Ingreso<br />
+                                        <input type="text" class="css-input" id="fecIngreso" name="fecIngreso" data-provide="datepicker" value="@ViewBag.poenUsuario.sFechaIngreso" readonly>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera col-input-8 css-padding-right">
+                                        Dirección <br />
+                                        <input type="text" maxlength="140" class="css-input" id="txtdirNeg" name="txtdirNeg" value="@ViewBag.poenUsuario.sDireccionLaboral">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera">
+                                        Ubigeo de Dirección
+                                    </div>
+                                    <div class="col-input-3 css-padding-right">
+                                        Departamento<br />
+                                        @Html.DropDownList("selectDirLDep", (SelectList)ViewBag.list7, new { @data = "1", @class = "css-input" })
+                                    </div>
+                                    <div class="col-input-4 css-padding-right">
+                                        Provincia<br />
+                                        @Html.DropDownList("selectDirLPro", (SelectList)ViewBag.list8, new { @data = "0", @class = "css-input" })
+                                    </div>
+                                    <div class="col-input-4 css-padding-right">
+                                        Distrito<br />
+                                        @Html.DropDownList("selectDirLDis", (SelectList)ViewBag.list9, new { @class = "css-input" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera">
+                                        Número Telefónico
+                                    </div>
+                                    <div class="col-input-2 css-padding-right">
+                                        Fijo<br />
+                                        <input type="text" class="css-input" name="fono1" id="fono1" maxlength="9" value="@ViewBag.poenUsuario.nTelefonoLaboral1">
+                                    </div>
+                                    <div class="col-input-2 css-padding-right">
+                                        Celular<br />
+                                        <input type="text" class="css-input" name="fono2" id="fono2" maxlength="9" value="@ViewBag.poenUsuario.nTelefonoLaboral2">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div id="dvDLI" style="display:none;">
+            <div class="row">
+                <div class="col-lg-12 css-margin-top">
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                        <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                    </span>
+                    <span class="css-text-title-option">Datos Laborales (Independiente)</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <table class="table-responsive css-table-detalle">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="cabecera col-input-8 css-padding-right">
+                                        Actividad o Giro del Negocio<br />
+                                        <input type="text" class="css-input" id="txtActvGiroI" name="txtActvGiroI" value="@ViewBag.poenUsuario.sNombreActividadCIIU" readonly>
+                                        <input type="hidden" name="txthActvGiroI" id="txthActvGiroI" value="@ViewBag.poenUsuario.sCodigoCIIU" />
+                                    </div>
+                                    <div class="col-input-1 css-padding-right">
+                                        &nbsp;&nbsp;&nbsp;<button class="btn btn-primary btn-xs" type="button" id="btnBuscar" data-toggle="modal" data-target="#myBuscar">Buscar</button>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera col-input-3 css-padding-right">
+                                        RUC<br />
+                                        <input type="text" class="css-input" id="txtActvGiroI" name="txtRUCI" value="@ViewBag.poenUsuario.sRuc" maxlength="11">
+                                    </div>
+                                    <div class="cabecera col-input-4 css-padding-right">
+                                        Fecha de Inicio de Actividades<br />
+                                        <input type="text" class="css-input" id="fecInicioAI" name="fecInicioAI" data-provide="datepicker" value="@ViewBag.poenUsuario.sFechaIngreso" readonly>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera col-input-8 css-padding-right">
+                                        Dirección del Negocio <br />
+                                        <input type="text" maxlength="140" id="txtdirNegI" name="txtdirNegI" class="css-input col-input-8" value="@ViewBag.poenUsuario.sDireccionLaboral">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera">
+                                        Ubigeo de Dirección del Negocio
+                                    </div>
+                                    <div class="col-input-3 css-padding-right">
+                                        Departamento<br />
+                                        @Html.DropDownList("selectDirLDepI", (SelectList)ViewBag.list7, new { @data = "1", @class = "css-input" })
+                                    </div>
+                                    <div class="col-input-4 css-padding-right">
+                                        Provincia<br />
+                                        @Html.DropDownList("selectDirLProI", (SelectList)ViewBag.list8, new { @data = "0", @class = "css-input" })
+                                    </div>
+                                    <div class="col-input-4 css-padding-right">
+                                        Distrito<br />
+                                        @Html.DropDownList("selectDirLDisI", (SelectList)ViewBag.list9, new { @class = "css-input" })
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="cabecera">
+                                        Número Telefónico
+                                    </div>
+                                    <div class="col-input-2 css-padding-right">
+                                        Fijo<br />
+                                        <input type="text" class="css-input" name="fono1I" id="fono1I" maxlength="9" value="@ViewBag.poenUsuario.nTelefonoLaboral1">
+                                    </div>
+                                    <div class="col-input-2 css-padding-right">
+                                        Celular<br />
+                                        <input type="text" class="css-input" name="fono2I" id="fono2I" maxlength="9" value="@ViewBag.poenUsuario.nTelefonoLaboral2">
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        @if (ViewBag.poenUsuario.sCodigoRelacionLaboral == "01")
+        {
+            <script>
+                $(document).ready(function () {
+                    $("#dvDLI").show();
+                    $("#dvDLD").hide();
+                    $("#txtRazon").val(" ");
+                    $("#selectCargos").val("1");
+                    $("#fecIngreso").val(" ");
+                    $("#txtdirNeg").val(" ");
+                    $("#selectDirLDep").val("0");
+                    $("#selectDirLPro").empty();
+                    $("#selectDirLDis").empty();
+                    $("#fono1").val(" ");
+                    $("#fono2").val(" ");
+                });
+            </script>
+        }
+        else if (ViewBag.poenUsuario.sCodigoRelacionLaboral == "02")
+        {
+            <script>
+                $(document).ready(function () {
+                    $("#dvDLD").show();
+                    $("#dvDLI").hide();
+                    $("#txtActvGiroI").val(" ");
+                    $("#txthActvGiroI").val("");
+                    $("#fecInicioAI").val(" ");
+                    $("#txtdirNegI").val(" ");
+                    $("#selectDirLDepI").val("0");
+                    $("#selectDirLProI").empty();
+                    $("#selectDirLDisI").empty();
+                    $("#fono1I").val(" ");
+                    $("#fono2I").val(" ");
+                });
+            </script>
+        }
+        else
+        {
+            <script>
+                $(document).ready(function () {
+                    $("#dvDLD").hide();
+                    $("#txtRazon").val(" ");
+                    $("#selectCargos").val("1");
+                    $("#fecIngreso").val(" ");
+                    $("#txtdirNeg").val(" ");
+                    $("#selectDirLDep").val("0");
+                    $("#selectDirLPro").empty();
+                    $("#selectDirLDis").empty();
+                    $("#fono1").val(" ");
+                    $("#fono2").val(" ");
+
+                    $("#dvDLI").hide();
+                    $("#txtActvGiroI").val(" ");
+                    $("#txthActvGiroI").val("");
+                    $("#fecInicioAI").val(" ");
+                    $("#txtdirNegI").val(" ");
+                    $("#selectDirLDepI").val("0");
+                    $("#selectDirLProI").empty();
+                    $("#selectDirLDisI").empty();
+                    $("#fono1I").val(" ");
+                    $("#fono2I").val(" ");
+                });
+            </script>
+        }
+        <br />
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span>
+                <span class="css-text-title-option">Datos Adicionales</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-detalle">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="cabecera">
+                                    Autorización de uso de Datos Personales
+                                </div>
+                                <div class="css-div-line">
+                                    @if (ViewBag.poenUsuario.iIdentificarAut == -1)
+                                    {
+                                        <input type="radio" name="AutUso" id="AutUso1" value="1"><span class="css-text-radio">SI</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span><input type="radio" name="AutUso" id="AutUs2" value="0" checked><span class="css-text-radio">NO</span>
+                                    }
+                                    else if (ViewBag.poenUsuario.iIdentificarAut == 1)
+                                    {
+                                        <input type="radio" name="AutUso" id="AutUso1" value="1" checked><span class="css-text-radio">SI</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span><input type="radio" name="AutUso" id="AutUso2" value="0"><span class="css-text-radio">NO</span>
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" name="AutUso" id="AutUso1" value="1"><span class="css-text-radio">SI</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span><input type="radio" name="AutUso" id="AutUso2" value="0" checked><span class="css-text-radio">NO</span>
+                                    }
+                                </div>
+                                <div class="css-informacion-solicitud text-justify">
+                                    @ViewBag.TextoAutorizacion[0].sDescripcion
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabecera">
+                                    Envío de Estados de Cuenta
+                                </div>
+                                <div class="css-div-line">
+                                    Tiene Ud. Una cuenta de:<br />
+                                    @foreach (var reg in ViewBag.TipoCuenta)
+                                    {
+                                        if (ViewBag.poenUsuario.iEnvioCuenta == reg.iValor1)
+                                        {
+                                            <input type="radio" name="CuentaUsuario" id="CuentaUsuario_@reg.iValor1" value="@reg.iValor1" checked />
+                                        }
+                                        else
+                                        {
+                                            if (reg.iValor1 == 1)
+                                            {
+                                                <input type="radio" name="CuentaUsuario" id="CuentaUsuario_@reg.iValor1" value="@reg.iValor1" checked />
+                                            }
+                                            else
+                                            {
+                                                <input type="radio" name="CuentaUsuario" id="CuentaUsuario_@reg.iValor1" value="@reg.iValor1" />
+                                            }
+                                        }
+                                        <span class="css-text-radio">@reg.sNombre</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span>
+                                    }
+                                </div>
+                                <div id="vdit_d">
+                                    <div class="css-div-line">
+                                        <br />
+                                        Desea Ud. Recibir su estado de Cuentas de su:<br />
+                                        @foreach (var reg in ViewBag.TipoCuenta)
+                                        {
+                                            if (ViewBag.poenUsuario.iEnvioReciboEECC == reg.iValor1)
+                                            {
+                                                <input type="radio" name="EstadoCuenta" id="EstadoCuenta_@reg.iValor1" value="@reg.iValor1" checked />
+                                            }
+                                            else
+                                            {
+                                                if (reg.iValor1 == 1)
+                                                {
+                                                    <input type="radio" name="EstadoCuenta" id="EstadoCuenta_@reg.iValor1" value="@reg.iValor1" checked />
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" name="EstadoCuenta" id="EstadoCuenta_@reg.iValor1" value="@reg.iValor1" />
+                                                }
+
+                                            }
+                                            <span class="css-text-radio">@reg.sNombre</span>
+                                            <span>&nbsp;&nbsp;&nbsp;</span>
+                                        }
+                                        <br />
+                                    </div>
+                                    <div id="vsdfe_fd">
+                                        <div>
+                                            <br />
+                                            Desea recibir su Estado de Cuenta en forma:<br />
+                                            @foreach (var reg in ViewBag.EstadoCuenta)
+                                            {
+                                                if (ViewBag.poenUsuario.iCorrespondencia == reg.iValor1)
+                                                {
+                                                    <input type="radio" name="RecibirCuenta" id="RecibirCuenta_@reg.iValor1" value="@reg.iValor1" checked>
+                                                    <span class="css-text-radio">@reg.sNombre</span>
+                                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                                }
+                                                else
+                                                {
+                                                    <input type="radio" name="RecibirCuenta" id="RecibirCuenta_@reg.iValor1" value="@reg.iValor1">
+                                                    <span class="css-text-radio">@reg.sNombre</span>
+                                                    <span>&nbsp;&nbsp;&nbsp;</span>
+                                                }
+                                            }
+                                            <br />
+                                        </div>
+                                        <div class="css-informacion-solicitud text-justify">
+                                            @ViewBag.EnvioEECC[0].sDescripcion <br />
+                                            @ViewBag.EnvioEECC[1].sDescripcion <br />
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span>
+                <span class="css-text-title-option">Clientes PEP</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-detalle">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div class="cabecera">
+                                    Ocupa o ha ocupado usted un Cargo público en los últimos 5 años
+                                </div>
+                                <div class="css-div-line">
+                                    @if (ViewBag.poenUsuario.iIdentificarPep == -1)
+                                    {
+                                        <input type="radio" name="CargoP" id="CargoP_1" value="1"><span class="css-text-radio">SI</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span><input type="radio" name="CargoP" id="CargoP_0" value="0" checked><span class="css-text-radio">NO</span>
+                                    }
+                                    else if (ViewBag.poenUsuario.iIdentificarPep == 1)
+                                    {
+                                        <input type="radio" name="CargoP" id="CargoP_1" value="1" checked><span class="css-text-radio">SI</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span><input type="radio" name="CargoP" id="CargoP_0" value="0"><span class="css-text-radio">NO</span>
+                                    }
+                                    else
+                                    {
+                                        <input type="radio" name="CargoP" id="CargoP_1" value="1"><span class="css-text-radio">SI</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span><input type="radio" name="CargoP" id="CargoP_0" value="0" checked><span class="css-text-radio">NO</span>
+                                    }
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabecera col-input-10 css-padding-right">
+                                    Detalle Ud. El cargo que ocupa o ha ocupado <br />
+                                    <input type="text" class="css-input" id="txtDetalleCargo" name="txtDetalleCargo" value="@ViewBag.poenUsuario.sPepOcupacion" maxlength="100">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="cabecera col-input-10 css-padding-right">
+                                    Detalle  Ud. la institución en la que ocupa o ha ocupado este cargo <br />
+                                    <input type="text" class="css-input " id="txtDetalleInstitucion" name="txtDetalleInstitucion" value="@ViewBag.poenUsuario.sPepOrganismo" maxlength="100">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr><td></td></tr>
+                    </tbody>
+                </table>
+                <div class="pull-right css-margin-top">
+                    <button type="button" class="btn btn-xs btn-default">Cancelar</button>
+                    <button type="button" class="btn btn-xs btn-primary" id="txtActualizar">Actualizar Datos</button>
+                </div>
+            </div>
+        </div>
+        <div id="myClave" class="modal fade" data-dismiss="static" role="dialog" data-keyboard="true" data-backdrop="static">
+            <div class="modal-dialog modal-md" style="max-width:400px;">
+                <div class="modal-content css-modal-form">
+                    <input type="hidden" id="hddpin" name="hddpin" value="">
+                    <div class="modal-header css-modal-form-header">
+                        <div class="modal-title">
+                            <i class="fa fa-user-secret fa-3x pull-left" style="color:#F58B52;"></i>
+                            <span class="css-modal-title">Guardar Actualización de datos</span>
+                            <br />
+                            <span class="css-modal-sub-title">Información requerida</span>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <table class="table-responsive css-table-detalle">
+                                    <colgroup>
+                                        <col style="width:20%">
+                                        <col>
+                                    </colgroup>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                Ingrese su clave Internet (6 dígitos). Ingrésala haciendo clic en cada cuadro de texto utilizando el teclado virtual.
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td rowspan="4">
+                                                <img src="data:image;base64,@System.Convert.ToBase64String(ViewBag.ruta.FileContents)" alt="" usemap="#Map" />
+                                                <map name="Map" id="Map">
+                                                    <area href="javascript: fn_codping2(0)" shape="rect" coords="10,7,23,24" />
+                                                    <area href="javascript: fn_codping2(1)" shape="rect" coords="36,7,50,24" />
+                                                    <area href="javascript: fn_codping2(2)" shape="rect" coords="61,6,77,24" />
+                                                    <area href="javascript: fn_codping2(3)" shape="rect" coords="8,31,22,47" />
+                                                    <area href="javascript: fn_codping2(4)" shape="rect" coords="35,31,51,48" />
+                                                    <area href="javascript: fn_codping2(5)" shape="rect" coords="62,30,76,48" />
+                                                    <area href="javascript: fn_codping2(6)" shape="rect" coords="8,55,22,70" />
+                                                    <area href="javascript: fn_codping2(7)" shape="rect" coords="36,55,50,72" />
+                                                    <area href="javascript: fn_codping2(8)" shape="rect" coords="62,55,77,72" />
+                                                    <area href="javascript: fn_codping2(9)" shape="rect" coords="61,80,77,95" />
+                                                    <area href="javascript: fn_codping2(-1)" shape="rect" coords="6,79,54,96" />
+                                                </map>
+                                                <br />
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span class="css-padding-left">Ingresa tu actual clave de Internet(6 dígitos)</span><br>
+                                                <input type="radio" name="clave" id="rClave1" value="0" checked>
+                                                <input type="password" id="psdclave" for="rClave1" class="css-input css-input-movil css-input-select" disabled>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer css-modal-form-footer">
+                        <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close1">Cerrar</button>
+                        <button type="submit" id="btnEnviar" class="btn btn-xs btn-primary">Aceptar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+<!-- Modal -->
+<div id="myBuscar" class="modal fade" data-dismiss="static" role="dialog" data-keyboard="true" data-backdrop="static">
+    <div class="modal-dialog modal-md" style="max-width:400px;">
+        <div class="modal-content css-modal-form">
+            <input type="hidden" id="hddcod" name="hddcod" value="1">
+            <div class="modal-header css-modal-form-header">
+                <div class="modal-title">
+                    <i class="fa fa-briefcase fa-3x pull-left" style="color:#F58B52;"></i>
+                    <span class="css-modal-title">Actividad o Giro del Negocio</span>
+                    <br />
+                    <span class="css-modal-sub-title">Cambiar de Actividad o Giro</span>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="col-xs-12">
+                    <table width="100%">
+                        <tr>
+                            <td class="cabecera" colspan="2">
+                                <div>
+                                    Actividad o Giro<br />
+                                    <input type="text" class="css-input col-xs-10" id="txtTextCUI" name="txtTextCUI">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">
+                                <div class="css-div-line">
+                                    Codigo CIIU<br />
+                                    <input type="text" class="css-input col-input-12" id="txtCodCIIU" name="txtCodCIIU">
+                                </div>
+                            </td>
+                            <td class="cabecera">
+                                <div class="css-div-line">
+                                    <br />
+                                    <button type="button" id="btnBuscarciiu" class="btn btn-xs btn-primary">Buscar</button>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <br />
+                                <div style="overflow-y: scroll; overflow-x: hidden;height:300px;">
+                                    <table class="table-responsive css-table-list" width="100%">
+                                        <colgroup>
+                                            <col width="15%" />
+                                            <col width="75%" />
+                                            <col width="10%" />
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-center">Codigo</th>
+                                                <th class="text-center">Actividad o Giro</th>
+                                                <th class="text-center">_</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tdCIIU"></tbody>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                    <br />
+                    <br />
+                </div>
+            </div>
+            <div class="modal-footer css-modal-form-footer">
+                <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close1">Cerrar</button>
+                <button type="button" id="btnAceptar" class="btn btn-xs btn-primary">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script contenteditable="false">
+    (function ($) {
+
+        $("[name='RelacionIngreso']").click(function () {
+            var val = $("#RelacionIngreso1").is(":checked");
+            if (val) {
+                $("#dvDLD").show();
+                $("#dvDLI").hide();
+            } else {
+                $("#dvDLI").show();
+                $("#dvDLD").hide();
+            }
+        });
+
+        $("[name='CuentaUsuario']").click(function () {
+            var val = this.value;
+            if (val == 4) {
+                $("#vdit_d").hide();
+                $("#EstadoCuenta_4").attr('checked', true);
+            }
+            else {
+                $("#vdit_d").show();
+                $("[name='EstadoCuenta']:checked").click();
+            }
+        });
+
+        $("[name='EstadoCuenta']").click(function () {
+            var val = this.value;
+            if (val == 4) {
+                $("#vsdfe_fd").hide();
+            }
+            else {
+                $("#vsdfe_fd").show();
+            }
+        });
+
+        $("[name='CuentaUsuario']:checked").click();
+        $("[name='EstadoCuenta']:checked").click();
+
+        $("#txtNombre,#txtNombre1,#txtApep,#txtApem").keyup(function () {
+            if (this.value.match(/[^a-zA-Z]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z]/g, '');
+            }
+        });
+
+        $("#txtNumero,#fono1,#fono2,#fono1I,#fono2I,#txtCodCIIU,#txtnro").keyup(function () {
+            if (this.value.match(/[^0-9]/g)) {
+                this.value = this.value.replace(/[^0-9]/g, '');
+            }
+        });
+
+        $('#txtDirP,#txtRefP,#txtdirNeg,#txtdirNegI,#txtDetalleCargo,#txtDetalleInstitucion,#txtRazon,#txtTextCUI,#txtZona').keyup(function () {
+            if (this.value.match(/[^a-zA-Z0-9 .]/g)) {
+                this.value = this.value.replace(/[^a-zA-Z0-9 .]/g, '');
+            }
+        });
+
+        $("#selectNacDep").change(function (event) {
+            event.preventDefault();
+            $("#selectNacDep").attr('disabled', true);
+            $("#selectNacPro").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectNacPro").empty().append(data.list1);
+                $("#selectNacDep").attr('disabled', false);
+                $("#selectNacPro").attr('disabled', false);
+                $("#selectNacDis").empty().attr('disabled', true);
+            });
+        });
+
+        $("#selectNacPro").change(function (event) {
+            event.preventDefault();
+            $("#selectNacPro").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectNacDis").empty().append(data.list1);
+                $("#selectNacPro").attr('disabled', false);
+                $("#selectNacDis").attr('disabled', false);
+            });
+        });
+
+
+        $("#selectDirDep").change(function (event) {
+            event.preventDefault();
+            $("#selectDirDep").attr('disabled', true);
+            $("#selectDirPro").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectDirPro").empty().append(data.list1);
+                $("#selectDirDep").attr('disabled', false);
+                $("#selectDirPro").attr('disabled', false);
+                $("#selectDirDis").empty().attr('disabled', true);
+            });
+        });
+
+        $("#selectDirPro").change(function (event) {
+            event.preventDefault();
+            $("#selectDirPro").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectDirDis").empty().append(data.list1);
+                $("#selectDirPro").attr('disabled', false);
+                $("#selectDirDis").attr('disabled', false);
+            });
+        });
+
+        $("#selectDirLDep").change(function (event) {
+            event.preventDefault();
+            $("#selectDirLDep").attr('disabled', true);
+            $("#selectDirLPro").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectDirLPro").empty().append(data.list1);
+                $("#selectDirLDep").attr('disabled', false);
+                $("#selectDirLPro").attr('disabled', false);
+                $("#selectDirLDis").empty().attr('disabled', true);
+            });
+        });
+
+        $("#selectDirLPro").change(function (event) {
+            event.preventDefault();
+            $("#selectDirLPro").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectDirLDis").empty().append(data.list1);
+                $("#selectDirLPro").attr('disabled', false);
+                $("#selectDirLDis").attr('disabled', false);
+            });
+        });
+
+        $("#selectDirLDepI").change(function (event) {
+            event.preventDefault();
+            $("#selectDirLDepI").attr('disabled', true);
+            $("#selectDirLProI").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectDirLProI").empty().append(data.list1);
+                $("#selectDirLDepI").attr('disabled', false);
+                $("#selectDirLProI").attr('disabled', false);
+                $("#selectDirLDisI").empty().attr('disabled', true);
+            });
+        });
+
+        $("#selectDirLProI").change(function (event) {
+            event.preventDefault();
+            $("#selectDirLProI").attr('disabled', true);
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $(this).attr("data"),
+                par2 = $(this).val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetInformacionUbigeo", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                $("#selectDirLDisI").empty().append(data.list1);
+                $("#selectDirLProI").attr('disabled', false);
+                $("#selectDirLDisI").attr('disabled', false);
+            });
+        });
+
+        $("#btnBuscar").click(function (event) {
+            $("#txtTextCUI").val(""),
+            $("#txtCodCIIU").val("");
+            $("#tdCIIU").empty();
+        });
+
+        $("#btnBuscarciiu").click(function (event) {
+            event.preventDefault();
+            $("#btnBuscarciiu").attr('disabled', true);
+            var b = false;
+            var v1 = $("#txtTextCUI").val();
+            var v2 = $("#txtCodCIIU").val();
+            var v3 = "";
+            if ($.trim(v1) == "" && $.trim(v2) == "") {
+                b = true;
+                v3 = "Ingrese algún valor de busqueda."
+            }
+            if (b) {
+                $("#hddMessage").html(v3);
+                $("#myModal2").modal("show");
+                $("#btnBuscarciiu").attr('disabled', false);
+                return;
+            }
+
+            var $form = $('#_Action_event_ForgeryToken');
+            var token = $('input[name="__RequestVerificationToken"]', $form).val(),
+                par1 = $("#txtTextCUI").val(),
+                par2 = $("#txtCodCIIU").val();
+            var posting = $.post(VG_RUTA_SERVIDOR + "credinka/GetCodigoCIIU", {
+                __RequestVerificationToken: token,
+                par1: par1,
+                par2: par2
+            });
+
+            posting.done(function (data) {
+                var html = "";
+                $.each(data.lst, function (key, item) {
+                    html = html +
+                     '<tr>' +
+                         '<td class="text-center">' + item.valor1 + '</td>' +
+                         '<td class="text-center">' + item.valor2 + '</td>' +
+                         '<td class="text-center"><input type="radio" name="selectAct" value="' + item.valor1 + '|' + item.valor2 + '" /></td>' +
+                     '</tr>';
+                });
+                if (html == "") {
+                    html = "<tr><td colspan='3' class='text-center'><small>No existen registros</small></td></tr>"
+                }
+                $("#tdCIIU").empty().append(html);
+                $("#btnBuscarciiu").attr('disabled', false);
+            });
+        });
+
+        $("#btnAceptar").click(function (event) {
+            event.preventDefault();
+            var b = false;
+            var result = false;
+            $.each($("[name='selectAct']"), function (key, item) {
+                b = $(item).is(":checked");
+                if (b) {
+                    var val = $(item).val();
+                    var vals = val.split("|");
+                    $("#txthActvGiroI").val(vals[0]);
+                    $("#txtActvGiroI").val(vals[1]);
+                    $("#myBuscar").modal("hide");
+                    result = true;
+                }
+            });
+
+            if (result == false) {
+                $("#hddMessage").append("Debe escoger una Actividad o Giro <br/>");
+                $("#myModal2").modal("show");
+                return false;
+            }
+        });
+
+        $("[name='CargoP']").click(function (event) {
+            var v = $(this).val();
+            if (v == 0) {
+                $("#txtDetalleCargo").attr('readonly', true);
+                $("#txtDetalleInstitucion").attr('readonly', true);
+                $("#txtDetalleCargo").val("");
+                $("#txtDetalleInstitucion").val("");
+            } else {
+                $("#txtDetalleCargo").attr('readonly', false);
+                $("#txtDetalleInstitucion").attr('readonly', false);
+            }
+        });
+
+        $.each($("[name='CargoP']"), function (index, item) {
+            var b = $(this).is(":checked");
+            if (b) {
+                $(this).click();
+            }
+        });
+
+        $("#selectTipoVia").change(function () {
+            if ($(this).val() == 0) {
+                $("#txtDirP").attr("readonly", true);
+                $("#txtnro").attr("readonly", true);
+                $("#txtDirP").val("");
+                $("#txtnro").val("");
+            } else {
+                $("#txtDirP").attr("readonly", false);
+                $("#txtnro").attr("readonly", false);
+            }
+        });
+
+        $("#selectTipoZona").change(function () {
+            if ($(this).val() == 0) {
+                $("#txtZona").attr("readonly", true);
+                $("#txtZona").val("");
+            } else {
+                $("#txtZona").attr("readonly", false);
+            }
+        });
+
+        $("#txtActualizar").click(function (event) {
+            $("#hddMessage").html("");
+            var br = false;
+
+            var re = /\S+@@\S+\.\S+/;
+            var a = $("#txtNombre").val();
+            var b = $("#txtNombre1").val();
+            var c = $("#txtApep").val();
+            var d = $("#txtApem").val();
+            var e = $("#txtfecNac").val();
+            var f = $("#selectNacDep").val();
+            var g = $("#selectNacPro").val();
+            var h = $("#selectNacDis").val();
+            var i = $("#txtDirP").val();
+            var j = $("#txtRefP").val();
+            var k = $("#selectDirDep").val();
+            var l = $("#selectDirPro").val();
+            var m = $("#selectDirDis").val();
+            var n = $("#txtEmail").val();
+            var o = $("#txtNumero").val();
+            var p = $("[name='RelacionIngreso']:checked").val();
+
+            var q = $("[name='CargoP']:checked").val();
+            var r = $("#txtDetalleCargo").val();
+            var s = $("#txtDetalleInstitucion").val();
+            var t = $("#selectTipoVia").val();
+            var u = $("#selectTipoZona").val();
+            var x = $("#txtnro").val();
+            var y = $("#txtZona").val();
+
+            var mr = $("[name='RecibirCuenta']:checked").val();
+            var ce = $("[name='EstadoCuenta']:checked").val();
+
+            if ($.trim(a).length == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese su nombre <br/>");
+            }
+
+            if ($.trim(c).length == 0 || $.trim(d).length == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese sus apellidos <br/>");
+            }
+
+            if ($.trim(e).length == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese su fecha de Nacimiento <br/>");
+            }
+
+            if (f == null || f == 0 || g == null || g == 0 || h == null || h == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese el ubigeo del lugar de nacimiento<br/>");
+            }
+            if (t != 0) {
+                if ($.trim(i).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese su dirección<br/>");
+                }
+                if ($.trim(x).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese su número de dirección<br/>");
+                }
+            }
+
+            if ($.trim(j).length == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese una referencia para su dirección <br/>");
+            }
+
+            if (u != 0 && $.trim(y).length == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese el nombre de la zona <br/>");
+            }
+
+            if (k == null || k == 0 || l == null || l == 0 || m == null || m == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese el ubigeo de su dirección<br/>");
+            }
+
+            if (t == 0 && u == 0) {
+                br = true;
+                $("#hddMessage").append("Debe elegir un tipo de via o un tipo de zona <br/>");
+            }
+
+            if (k == null || k == 0 || l == null || l == 0 || m == null || m == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese el ubigeo de su dirección<br/>");
+            }
+
+            if ($.trim(n).length == 0) {
+                br = true;
+                $("#hddMessage").append("Ingrese su correo electrónico<br/>");
+            } else if (!re.test(n)) {
+                $("#hddMessage").append("El correo electrónico ingresado no es valido<br/>");
+                code = true;
+            }
+
+            if ($.trim(o).length < 7) {
+                br = true;
+                $("#hddMessage").append("Ingrese un número telefónico valido <br/>");
+            }
+
+            if (br) {
+                $("#myModal2").modal("show");
+                return false;
+            }
+
+            if (p == "01") {
+                var ia = $("#txthActvGiroI").val();
+                var ib = $("#fecInicioAI").val();
+                var ij = $("#txtRUCI").val();
+                var ic = $("#txtdirNegI").val();
+                var id = $("#selectDirLDepI").val();
+                var ie = $("#selectDirLProI").val();
+                var ig = $("#selectDirLDisI").val();
+                var ih = $("#fono1I").val();
+                var ii = $("#fono2I").val();
+
+                if ($.trim(ia).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Elija la Actividad o Giro del Negocio <br/>");
+                }
+
+                if ($.trim(ij) != 0 && $.trim(ij) < 11) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese un RUC valido <br/>");
+                }
+
+                if ($.trim(ib).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese su fecha de Inicio de Actividades <br/>");
+                }
+
+                if ($.trim(ic).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese su dirección de Negocio <br/>");
+                }
+
+                if (id == null || id == 0 || ie == null || ie == 0 || ig == null || ig == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese el ubigeo de su dirección<br/>");
+                }
+
+                if ($.trim(ih).length < 7 || $.trim(ii).length < 7) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese los Telefonos correctos<br/>");
+                }
+            } else if (p == "02") {
+                var da = $("#txtRazon").val();
+                var db = $("#selectCargos").val();
+                var dc = $("#txtdirNeg").val();
+                var dd = $("#selectDirLDep").val();
+                var de = $("#selectDirLPro").val();
+                var dg = $("#selectDirLDis").val();
+                var dh = $("#fono1").val();
+                var di = $("#fono2").val();
+                var dj = $("#fecIngreso").val();
+
+                if ($.trim(da).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Elija la Razón social <br/>");
+                }
+
+                if (db == null) {
+                    br = true;
+                    $("#hddMessage").append("Seleccione un cargo <br/>");
+                }
+
+                if ($.trim(dj).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Seleccione una fecha de ingreso<br/>");
+                }
+
+
+                if ($.trim(dc).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese su dirección de Negocio <br/>");
+                }
+
+                if (dd == null || dd == 0 || de == null || de == 0 || dg == null || dg == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese el ubigeo de su dirección<br/>");
+                }
+
+                if ($.trim(dh).length < 7 || $.trim(di).length < 7) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese los Telefonos correctos<br/>");
+                }
+            } else {
+                br = true;
+                $("#hddMessage").append("Elija un tipo de ingreso <br/>");
+            }
+
+            if (ce != 4) {
+                if (mr != 1 && mr != 2) {
+                    br = true;
+                    $("#hddMessage").append("Elija como desea recibir su Estado de Cuenta <br/>");
+                }
+            }
+
+            if (q == 1) {
+                if ($.trim(r).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese el detalle del cargo que ocupa o ha ocupado <br/>");
+                }
+                if ($.trim(s).length == 0) {
+                    br = true;
+                    $("#hddMessage").append("Ingrese el detalle de la institución que ocupa o ha ocupado <br/>");
+                }
+            } else {
+                q = 0;
+            }
+
+            if (br) {
+                $("#myModal2").modal("show");
+                return false;
+            }
+
+            $("#psdclave").val("");
+            $("#hddpin").val("");
+            $("#myClave").modal("show");
+            return;
+        });
+
+        $("#btnEnviar").click(function (event) {
+            event.preventDefault();
+            if ($("#hddpin").val().length != 6) {
+                $("#hddMessage").html("");
+                $("#hddMessage").append("Su clave de Internet debe ser de 6 dígitos <br/>");
+                $("#myModal2").modal("show");
+                return;
+            } else {
+                LoadingDialog.show();
+                $("#_Action_event_ForgeryToken").submit();
+            }
+        });
+
+    }(jQuery));
+</script>
+
+

@@ -1,0 +1,130 @@
+﻿@{
+    Layout = null;
+    ViewBag.Title = "Credinka :: Banca por Internet";
+    ViewBag.TamanoLista = 15;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>CronogramaPagos</title>
+
+</head>
+<body>
+    <div id="content">
+        <div class="container">
+            <p style="text-align:center;font-weight:bolder;">CRONOGRAMA PAGOS</p>
+            <table id="myTable" class="table table-hover">
+                <thead class="table-responsive css-table-list">
+                    <tr style="background-color:#F1F1F1;">
+                        <th width="10%" style="text-align:center;">Cuota</th>
+                        <th width="15%" style="text-align:center;">Fecha de vencimiento</th>
+                        <th width="15%" style="text-align:center;">Fecha de Pago</th>
+                        <th width="15%" style="text-align:center;">Saldo Capital</th>
+                        <th width="15%" style="text-align:center;">Días de atraso</th>
+                        <th width="15%" style="text-align:center;">Monto de Cuota</th>
+                        <th width="15%" style="text-align:center;">Estado</th>
+                    </tr>
+                </thead>
+                <tbody id="PageAll">
+
+                    @if (ViewBag.lstIMG.Count > ViewBag.TamanoLista)
+                    {
+                        ViewBag.i = 0;
+                        var ocultar = "";
+                        ViewBag.Paginas = ViewBag.lstIMG.Count / ViewBag.TamanoLista;
+                        if (ViewBag.lstIMG.Count % ViewBag.TamanoLista > 0)
+                        {
+                            ViewBag.Paginas = ViewBag.Paginas + 1;
+                        }
+                        foreach (var reg in ViewBag.lstIMG)
+                        {
+                            ViewBag.kk = (ViewBag.i / ViewBag.TamanoLista) + 1;
+                            ViewBag.Coll = "pag" + ViewBag.kk;
+                            if (ViewBag.i >= ViewBag.TamanoLista)
+                            {
+                                ocultar = "ocultar";
+                            }
+                            <tr name="@ViewBag.Coll" class="@ocultar">
+                                    <td style="text-align:center;">@reg.nCuota</td>
+                                    <td style="text-align:center;">@reg.sFecVencimiento</td>
+                                    <td style="text-align:center;">@reg.sFechaPago</td>
+                                    <td style="text-align:right;">@reg.sSaldoCapital</td>
+                                    <td style="text-align:center;">
+                                        @if (reg.nDiasAtraso > 0)
+                                        { @reg.nDiasAtraso }
+                                    </td>
+                                    <td style="text-align:center;">@reg.sMontoCuota</td>
+                                    <td style="padding-left:1em;text-align:right;">@reg.sEstado</td>
+                                </tr>
+                                        ViewBag.i = ViewBag.i + 1;
+
+
+                        }
+
+                    }
+                    else
+                    {
+                        foreach (var reg in ViewBag.lstIMG)
+                        {
+                            <tr>
+                                <td style="text-align:center;">@reg.nCuota</td>
+                                <td style="text-align:center;">@reg.sFecVencimiento</td>
+                                <td style="text-align:center;">@reg.sFechaPago</td>
+                                <td style="text-align:right;">@reg.sSaldoCapital</td>
+                                <td style="text-align:center;">
+                                    @if (reg.nDiasAtraso > 0)
+                                    { @reg.nDiasAtraso }
+                                </td>
+                                <td style="text-align:center;">@reg.sMontoCuota</td>
+                                <td style="padding-left:1em;text-align:right;">@reg.sEstado</td>
+                            </tr>
+                        }
+                    }
+
+
+
+
+                </tbody>
+            </table>
+
+        </div>
+        @if (ViewBag.lstIMG.Count > ViewBag.TamanoLista)
+        {
+
+
+            <div class="col-md-12 text-center">
+                <span>Páginas</span>
+                @for (int i = 1; i <= ViewBag.Paginas; i++)
+                {
+                    ViewBag.pag = "pag" + i;
+                    <a class="navCronograma" href="#" 
+                       onclick="for (i=1;i<=@ViewBag.Paginas;i++) {var lnk = document.getElementsByName('pag'+i); lnk.forEach((child) => {child.classList.add('ocultar'); });} var link = document.getElementsByName('@ViewBag.pag'); link.forEach((child) => {child.classList.remove('ocultar'); }); "> @i </a>
+                }
+            </div>
+        }
+
+
+
+
+
+
+        <div class="modal-footer css-modal-form-footer">
+            <br />
+            <button type="button" class="btn btn-xs btn-danger css-close" data-dismiss="modal" id="modal-close1">Cerrar</button>
+        </div>
+    </div>
+    @*
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/remarkable/1.7.1/remarkable.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twbs-pagination/1.4.1/jquery.twbsPagination.js"></script>
+        <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+
+        <script src="@Url.Content("~/Components/DataTable.jsx")"></script>
+    *@
+</body>
+
+</html>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="wsUbigeo" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/BancaInternet.EN" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IwsUbigeo_WSObtenerDepartamentos_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSObtenerDepartamentos" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSObtenerDepartamentos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSObtenerDepartamentosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSObtenerProvinciaPorDepartamentos_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSObtenerProvinciaPorDepartamentos" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSObtenerProvinciaPorDepartamentos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSObtenerProvinciaPorDepartamentosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSObtenerDistritosPorProvincia_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSObtenerDistritosPorProvincia" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSObtenerDistritosPorProvincia_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSObtenerDistritosPorProvinciaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSAfiliacionBusquedaUbigeo_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSAfiliacionBusquedaUbigeo" />
+  </wsdl:message>
+  <wsdl:message name="IwsUbigeo_WSAfiliacionBusquedaUbigeo_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSAfiliacionBusquedaUbigeoResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IwsUbigeo">
+    <wsdl:operation name="WSObtenerDepartamentos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUbigeo/WSObtenerDepartamentos" message="tns:IwsUbigeo_WSObtenerDepartamentos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUbigeo/WSObtenerDepartamentosResponse" message="tns:IwsUbigeo_WSObtenerDepartamentos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSObtenerProvinciaPorDepartamentos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUbigeo/WSObtenerProvinciaPorDepartamentos" message="tns:IwsUbigeo_WSObtenerProvinciaPorDepartamentos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUbigeo/WSObtenerProvinciaPorDepartamentosResponse" message="tns:IwsUbigeo_WSObtenerProvinciaPorDepartamentos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSObtenerDistritosPorProvincia">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUbigeo/WSObtenerDistritosPorProvincia" message="tns:IwsUbigeo_WSObtenerDistritosPorProvincia_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUbigeo/WSObtenerDistritosPorProvinciaResponse" message="tns:IwsUbigeo_WSObtenerDistritosPorProvincia_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSAfiliacionBusquedaUbigeo">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUbigeo/WSAfiliacionBusquedaUbigeo" message="tns:IwsUbigeo_WSAfiliacionBusquedaUbigeo_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUbigeo/WSAfiliacionBusquedaUbigeoResponse" message="tns:IwsUbigeo_WSAfiliacionBusquedaUbigeo_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IwsUbigeo" type="tns:IwsUbigeo">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WSObtenerDepartamentos">
+      <soap:operation soapAction="http://tempuri.org/IwsUbigeo/WSObtenerDepartamentos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSObtenerProvinciaPorDepartamentos">
+      <soap:operation soapAction="http://tempuri.org/IwsUbigeo/WSObtenerProvinciaPorDepartamentos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSObtenerDistritosPorProvincia">
+      <soap:operation soapAction="http://tempuri.org/IwsUbigeo/WSObtenerDistritosPorProvincia" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSAfiliacionBusquedaUbigeo">
+      <soap:operation soapAction="http://tempuri.org/IwsUbigeo/WSAfiliacionBusquedaUbigeo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsUbigeo">
+    <wsdl:port name="BasicHttpBinding_IwsUbigeo" binding="tns:BasicHttpBinding_IwsUbigeo">
+      <soap:address location="http://localhost:8733/BancaInternet.WS/wsUbigeo/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

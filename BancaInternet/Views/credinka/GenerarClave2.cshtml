@@ -1,0 +1,244 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@using BancaInternet
+@{
+    Layout = null;
+    ViewBag.Title = "Credinka :: Banca por Internet";
+    
+}
+
+@using (Html.BeginForm("Generar", "credinka", FormMethod.Post, new { id = "__GenerateCode__" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+    <input type="hidden" name="hddValor" value="@ViewBag.ValueOption">
+    <input type="hidden" id="hddtext" name="hddtext" value="@ViewBag.textValor">
+    <input type="hidden" id="hddpin1" name="hddpin1">
+    <input type="hidden" id="hddpin2" name="hddpin2">
+
+    @Html.Hidden(MvcApplication.MultipleParameterKey, 3)
+    <div class="modal-header css-modal-form-header">
+        <div class="modal-title">
+            <i class="fa fa-sign-out fa-3x pull-left" style="color:#F58B52;"></i>
+            <span class="css-modal-title">Generar Clave de Internet (6 dígitos)</span>
+            <br />
+            <span class="css-modal-sub-title">Sigue los pasos</span>
+        </div>
+        <div class="css-modal-title-pasos pull-right">
+            <ul class="css-modal-pasos-ul">
+                <li class="complete"><a><i>1</i></a></li>
+                <li class="active"><a><i>2</i></a></li>
+                <li><a><i>3</i></a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span>
+                <span class="css-text-title-option">Validación de datos</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-detalle">
+                    <colgroup>
+                        <col style="width:20%">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                Eliga y memoriza los 6 dígitos de tu nueva clave Internet (sólo números). Ingrésala haciendo clic en cada cuadro de texto utilizando el teclado virtual.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="3">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(ViewBag.ruta.FileContents)" alt="" usemap="#Map2" />
+                                <map name="Map2" id="Map2">
+                                    <area href="javascript: fn_codping1(0)" shape="rect" coords="10,7,23,24" />
+                                    <area href="javascript: fn_codping1(1)" shape="rect" coords="36,7,50,24" />
+                                    <area href="javascript: fn_codping1(2)" shape="rect" coords="61,6,77,24" />
+                                    <area href="javascript: fn_codping1(3)" shape="rect" coords="8,31,22,47" />
+                                    <area href="javascript: fn_codping1(4)" shape="rect" coords="35,31,51,48" />
+                                    <area href="javascript: fn_codping1(5)" shape="rect" coords="62,30,76,48" />
+                                    <area href="javascript: fn_codping1(6)" shape="rect" coords="8,55,22,70" />
+                                    <area href="javascript: fn_codping1(7)" shape="rect" coords="36,55,50,72" />
+                                    <area href="javascript: fn_codping1(8)" shape="rect" coords="62,55,77,72" />
+                                    <area href="javascript: fn_codping1(9)" shape="rect" coords="61,80,77,95" />
+                                    <area href="javascript: fn_codping1(-1)" shape="rect" coords="6,79,54,96" />
+                                </map>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="css-padding-left"><strong>Clave de Internet (6 dígitos)</strong></span><br>
+                                <input type="radio" name="clave" id="rClave2" checked/>
+                                <input type="password" for="rClave2" id="psdclave2" class="css-input css-input-movil css-input-select" disabled>
+                                
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="css-padding-left"><strong>Reingresa tu clave de Internet (6 dígitos)</strong></span><br>
+                                <input type="radio" name="clave" id="rClave3" />
+                                <input type="password" for="rClave3" id="psdclave3" class="css-input css-input-movil" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <div class="col-lg-12">
+                                    <label for="sel1"><strong>Ingresa el texto de la imagen</strong></label>
+                                </div>
+                                <div class="col-lg-12 form-group-margin0">
+                                    <div class="pull-left">
+                                        <div class="row">
+                                            <div class="col-xs-12 css-div-capcha">
+                                                @Html.Captcha("Actualizar Imagen", null, 5, "Debe ingresar el texto.", true, new ParameterModel(MvcApplication.MultipleParameterKey, 3))
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer css-modal-form-footer">
+        <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close1">Cerrar</button>
+        <button type="submit" class="btn btn-xs btn-primary">Siguiente <i class="fa fa-angle-double-right"></i></button>
+    </div>
+}
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $("input[id^='CaptchaInputText']").attr("maxlength", 7);
+
+        //Cambio de contraseña
+        $.each($("[name='clave']"), function (i, l) {
+            $(this).click(function () {
+                $("[for]").removeClass("css-input-select");
+                $("[for='" + this.id + "']").addClass("css-input-select");
+            });
+        });
+
+        var t = $("#hddtext").val();
+        if (t.length > 0) {
+            $("#hddMessage").append(t);
+            $("#myModal").modal("show");
+        }
+
+        $("#__GenerateCode__").submit(function (event) {
+            event.preventDefault();
+            $("#hddMessage").html("");
+            var code = false;
+            var cap = $("#CaptchaInputText3").val();
+            var pin1 = $("#hddpin1").val();
+            var pin2 = $("#hddpin2").val();
+
+            if ($.trim(pin1).length != 6) {
+                $("#hddMessage").append("La clave de acceso debe ser de 6 dígitos <br/>");
+                code = true;
+            }
+            if ($.trim(pin2).length == 0) {
+                $("#hddMessage").append("Ingrese su clave nuevamente.<br/>");
+                code = true;
+            }
+            if ($.trim(cap).length == 0) {
+                $("#hddMessage").append("Ingrese el texto de la imagen <br/>");
+                code = true;
+            }
+
+            if ($.trim(pin1) != $.trim(pin2)) {
+                $("#hddMessage").append("Su clave de 6 dígitos no coincide <br/>");
+                code = true;
+            }
+
+            if (code) {
+                $("#myModal").modal("show");
+                return false;
+            } else {
+                LoadingDialog.show();
+
+                var token = $('input[name="__RequestVerificationToken"]', this).val();
+                var $form = $(this),
+                  term = $form.find("input[name='hddValor']").val(),
+                  _TypeKey_ = $form.find("input[name='_TypeKey_']").val(),
+                  CaptchaInputText3 = $form.find("input[name='CaptchaInputText3']").val(),
+                  CaptchaDeText3 = $form.find("input[name='CaptchaDeText3']").val(),
+                  url = $form.attr("action");
+
+                // Send the data using post
+                var posting = $.post(url, {
+                    __RequestVerificationToken: token,
+                    hddValor: term,
+                    _TypeKey_: _TypeKey_,
+                    CaptchaInputText3: CaptchaInputText3,
+                    CaptchaDeText3: CaptchaDeText3,
+                    hddpin1: pin1,
+                    hddpin2: pin2
+                });
+
+                // Put the results in a div
+                posting.done(function (data) {
+                    $("#dvContent").empty().append(data);
+                    LoadingDialog.hide();
+                });
+            }
+        });
+
+    });
+
+
+    function fn_codping1(cod) {
+           
+        var b = $("#rClave2").is(":checked");
+        
+        if (b) {
+            if (cod == -1) {
+                $("#hddpin1").val("");
+                $("#psdclave2").val("");
+                return;
+            }
+
+            var psdval = $("#psdclave2").val();
+            var hddval = $("#hddpin1").val();
+            if (hddval.length == 6) {
+                return;
+            }
+            if (hddval.length < 6) {
+                $("#hddpin1").val(hddval + cod);
+                $("#psdclave2").val(psdval + "*");
+                return;
+            }
+        } else {
+            if (cod == -1) {
+                $("#hddpin2").val("");
+                $("#psdclave3").val("");
+                return;
+            }
+
+            var psdval = $("#psdclave3").val();
+            var hddval = $("#hddpin2").val();
+            if (hddval.length == 6) {
+                return;
+            }
+            if (hddval.length < 6) {
+                $("#hddpin2").val(hddval + cod);
+                $("#psdclave3").val(psdval + "*");
+                return;
+            }
+
+        }
+    }
+
+
+</script>

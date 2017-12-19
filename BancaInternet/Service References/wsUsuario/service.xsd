@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="http://schemas.datacontract.org/2004/07/BancaInternet.EN" />
+  <xs:element name="WSRegistrarAsociaconUsuario">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="Valor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSRegistrarAsociaconUsuarioResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WSRegistrarAsociaconUsuarioResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSCambiarClaveTarjeta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSCambiarClaveTarjetaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WSCambiarClaveTarjetaResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSRegistrarSeguimientoAccesos">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="poenUsuario" nillable="true" type="q1:enUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSRegistrarSeguimientoAccesosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WSRegistrarSeguimientoAccesosResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSValidaAccesoHomeBanking">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="valor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSValidaAccesoHomeBankingResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSValidaAccesoHomeBankingResult" nillable="true" type="q2:enSesion" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSValidaClaveUnibanca">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="valor1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="valor2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSValidaClaveUnibancaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSValidaClaveUnibancaResult" nillable="true" type="q3:enUsuarioValida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSOlvideMiClave">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="valor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSOlvideMiClaveResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WSOlvideMiClaveResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarDatosCliente">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarDatosClienteResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSListarDatosClienteResult" nillable="true" type="q4:enUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSActualizarInformacion">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSActualizarInformacionResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WSActualizarInformacionResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSAfiliacionPaso1ValidacionTarjeta">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSAfiliacionPaso1ValidacionTarjetaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSAfiliacionPaso1ValidacionTarjetaResult" nillable="true" type="q5:enUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSActualizarSelloSeguridad">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sValor1" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSActualizarSelloSeguridadResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="WSActualizarSelloSeguridadResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarSellos">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSListarSellosResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSListarSellosResult" nillable="true" type="q6:ArrayOfenSellos" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSAfiliacionYActualizacionInformacionP2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="poenUsuario" nillable="true" type="q7:enUsuario" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="WSAfiliacionYActualizacionInformacionP2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/BancaInternet.EN" minOccurs="0" name="WSAfiliacionYActualizacionInformacionP2Result" nillable="true" type="q8:enUsuarioValida" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,72 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@using BancaInternet
+@{
+    Layout = null;
+    ViewBag.Title = "Credinka :: Banca por Internet";
+
+}
+
+@using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, new { id = "__GenerateSeg__" }))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+    <input type="hidden" name="_form_name" id="_form_name" value="@ViewBag.form_interno">
+
+    <div class="modal-header css-modal-form-header">
+        <div class="modal-title">
+            <i class="fa fa-shield fa-3x pull-left" style="color:#F58B52;"></i>
+            <span class="css-modal-title">Sellos de seguridad</span>
+            <br />
+            <span class="css-modal-sub-title">Personalize su seguridad</span>
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="col-lg-12">
+            <div class="row">
+                @{string name = "";}
+                @foreach (var reg in ViewBag.lstIMG)
+                {
+                    name = Path.GetRandomFileName();
+                    name = name.Replace(".", "");
+                    <div class="form-group col-md-3 col-sm-3 col-xs-4 text-center">
+                        <label for="@name" class="css-cursor-select">
+                            @if (reg.bSeleccion)
+                            {
+                                <img width="91" height="71" class="css-img-border select" id="+@name" src="@reg.vRutaCompleta" />
+                            }
+                            else
+                            {
+                                <img width="91" height="71" class="css-img-border" id="+@name" src="@reg.vRutaCompleta" />
+                            }
+                        </label>
+                        @if (reg.bSeleccion)
+                        {
+                            <input type="radio" name="select" id="@name" value="@reg.iIdSello" checked />
+                        }
+                        else
+                        {
+                            <input type="radio" name="select" id="@name" value="@reg.iIdSello" />
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer css-modal-form-footer">
+        <br />
+        <button type="button" class="btn btn-xs btn-danger css-close" data-dismiss="modal" id="modal-close1">Cerrar</button>
+        <button id="btnAceptar" type="submit" class="btn btn-xs btn-primary">Aceptar</button>
+    </div>
+}
+<script contenteditable="true">
+    (function ($) {
+
+        $("[name='select']").click(function () {
+            var id = this.id;
+            $("img").removeClass("select");
+            $("img[id='+" + id + "']").addClass("select");
+        });
+
+    }(jQuery));
+</script>

@@ -1,0 +1,371 @@
+﻿@using System.Web.Optimization
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta http-equiv="cache-control" content="no-cache" />
+    <meta http-equiv="expires" content="0" />
+    <link rel="HomeBanking" type="image/x-icon" href="/favicon.ico" />
+    <meta http-equiv="pragma" content="no-cache" />
+    
+    <title>@ViewBag.Title - Credinka :: Banca por Internet</title>
+    @Styles.Render("~/credinka/cssGeneral")
+    @Scripts.Render("~/credinka/jsGeneral")
+
+    <style>
+        @@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+        @@font-face {
+            font-family: 'FontAwesome';
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @@font-face {
+            font-family: 'Glyphicons Halflings';
+            src: url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.eot');
+            src: url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.woff') format('woff'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+        }
+
+    </style>
+    <script type="text/javascript">
+        var VG_RUTA_SERVIDOR = "@Url.Content("~")";
+    </script>
+</head>
+<body>
+    <input type="hidden" id="hddContador" name="hddContador" value="@ViewBag.TimerSistema">
+    <input type="hidden" id="hddtimeout" name="hddtimeout" value="@ViewBag.TimerCaduca">
+    <div class="css-lineaSuperior"></div>
+    <div class="wrap">
+        @using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+        {
+            @Html.AntiForgeryToken()
+            <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+            <input type="submit" style="display:none;" id="hddsubmit" name="hddsubmit">
+            <input type="hidden" id="hddaction" name="hddaction" value="@ViewBag.hddaction">
+            <!--Banner Superior-->
+            <div class="container css-container-banner">
+                <div class="css-banner-option">
+                    <div class="pull-right">
+                        <span class="css-banner-nombreUusario">@ViewBag.nombre @ViewBag.apellidos </span><i class="fa fa-user"></i> |
+                        <span id="spfechaSistema">@ViewBag.GetDate</span>
+                        <span><button type="button" onclick="javascript: fn_option(1);" class="btn btn-xs btn-default css-banner-btn-salir"><i class="fa fa-sign-out"></i> Salir</button></span>
+                    </div>
+                </div>
+                <div class="css-banner">
+                    <img class="css-banner-image" src="~/Content/Images/logo-intranet.png">
+                    <span class="css-banner-text">Banca por Internet</span>
+                </div>
+            </div>
+
+        <!--Menu-->
+            <div class="col-lg-12 css-menu">
+                <div class="container">
+                    <ul class="css-menu-li">
+                        <li id="0"><a href="#" onclick="javascript: fn_option(0);"><i class="fa fa-home fa-lg"></i></a></li>
+                        <li id="2"><a href="#" onclick="javascript: fn_option(2);">Mis Ahorros</a></li>
+                        <li id="3"><a href="#" onclick="javascript: fn_option(3);">Mis Préstamos</a></li>
+                    </ul>
+                    <div class="css-option-timer">
+                        <span id="sptimer" class="css-timer">0:00</span>
+                        <i id="itimer" class="fa fa-clock-o fa-lg fa-spin"></i>
+                    </div>
+                    <div id="dvCuenta" class="css-option-micuenta">
+                        Mi Cuenta
+                        <i class="fa fa-user fa-lg" style="margin-left:7px;"></i>
+                    </div>
+                    <div id="dvOption" class="css-modal-option">
+                        <div class="row css-margin-right css-margin-left">
+                            <div class="col-xs-12 css-modal-option-border-top">
+                                <div class="row">
+                                    <div class="col-xs-12 css-modal-option-border1">
+                                        <span class="fa-stack fa-2x pull-left">
+                                            <i class="fa fa-square-o fa-stack-2x" style="color:#A1A1A1;"></i>
+                                            <i class="fa fa-user fa-stack-1x" style="color:#EA6C1D;"></i>
+                                        </span>
+                                        <div class="css-modal-option-border1-text">
+                                            @ViewBag.sTituloOpcion
+                                            <br />
+                                            <span id="spUsuario" class="css-modal-option-text-name">@ViewBag.nombre @ViewBag.apellidos</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 css-modal-option-border2">
+                                        <span class="fa-stack fa-2x pull-left">
+                                            <i class="fa fa-hand-o-right fa-stack-1x" style="color:#A1A1A1"></i>
+                                        </span>
+                                        <div class="css-modal-option-border1-text">
+                                            Último acceso
+                                            <br />
+                                            <span id="spUltimoAcceso" class="css-modal-option-text-acceso">@ViewBag.sUltimoAcceso</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a href="#" onclick="javascript: fn_option(5);">
+                                <div class="col-xs-4 css-modal-option-border4 noselect">
+                                    <i class="fa fa-key fa-3x"></i>
+                                    <p class="text-center">Cambiar Contraseña</p>
+                                </div>
+                            </a>
+                            <a href="#" data-keyboard="true" id="hrefPF">
+                                <div class="col-xs-4 css-modal-option-border5 noselect">
+                                    <span class="fa-stack fa-lg">
+                                        <i class="fa fa-comment fa-stack-2x"></i>
+                                        <i class="fa fa-question fa-stack-1x fa-inverse"></i>
+                                    </span>
+                                    <p class="text-center" style="margin-top:5px;">Preguntas Frecuentes</p>
+                                </div>
+                            </a>
+                            <a href="#" onclick="javascript: fn_option(1);">
+                                <div class="col-xs-4 css-modal-option-border6 noselect">
+                                    <i class="fa fa-sign-out fa-4x"></i>
+                                    <p class="text-center">Cerrar Sesión</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        <!--Banner bienvenido-->
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 css-container-banner-bienvenido">
+                    <img class="img-responsive" style="width:100%;height:100%;" src="@ViewBag.bannerBienvenida">
+                </div>
+            </div>
+        </div>
+
+        <!--Contenido page-->
+        <div class="container">
+            <div class="row css-container-body">
+                <!--Contenido de pagina-->
+                <div class="col-md-2" id="listaOpciones">
+                    <!--
+                    <img src="~/Content/Images/icono01.svg" class="imgSVG" width="25" />
+                    <span class="css-text-title-option">Operaciones</span>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Transferencias entre cuentas Credinka</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Transferencias interbancarias</a>
+                        </div>
+                    </div>
+
+                    <br />                    
+                    <img src="~/Content/Images/icono01.svg" class="imgSVG" width="25" />
+                    <span class="css-text-title-option">Créditos</span>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Solicitar Préstamo</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Pago de Cuotas</a>
+                        </div>
+                    </div>
+
+                    <br />
+                    <img src="~/Content/Images/icono01.svg" class="imgSVG" width="25" />
+                    <span class="css-text-title-option">Pago de Servicios</span>
+
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Favoritos</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Búsqueda de servicio</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Débito Automático</a>
+                        </div>
+                    </div>
+
+                    <br />
+                    <img src="~/Content/Images/icono01.svg" class="imgSVG" width="25" />
+                    <span class="css-text-title-option">Otros Servicios</span>
+                    <br />
+                    <div class="row">
+                        <div class="col-sm-3 col-md-3 col-lg-2" style="width:10%!important;padding-right: 1px!important;">
+                            <i class="fa fa-bolt" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="col-sm-9 col-md-9 col-lg-8" style="width:85%;padding-right: 1px!important;">
+                            <a>Actualizar datos</a>
+                        </div>
+                    </div>
+                    -->
+                </div>
+                <div class="col-md-7">
+                    @RenderBody()
+                </div>
+                <!--banner lateral-->
+                <div class="col-md-3" id="barraLateral">
+                    <div class="css-container-principal css-container-color css-border-redondo">
+                        <div class="css-title-text-cambio">
+                            TIPO DE CAMBIO : &nbsp; @ViewBag.sFechaCambio
+                            <!-- <div class="css-title-subtext-cambio">
+                               <span class="css-text-fecha-cambio" id=""> </span>
+                            </div>-->
+                        </div>
+                        <div class="css-title-subtext-cambio">
+                            <span class="css-text-compra-title">Compra </span>
+                            <span class="css-text-compra">S/. </span>
+                            <span class="css-text-compra">@ViewBag.sTipoCambioCompra </span><i class="fa fa-line-chart" style="color:#ED8241;"></i>
+                        </div>
+                        <div class="css-title-subtext-cambio">
+                            <span class="css-text-compra-title">Venta </span>
+                            <span class="css-text-compra">S/. </span>
+                            <span class="css-text-compra">@ViewBag.sTipoCambioVenta </span> <i class="fa fa-line-chart" style="color:#ED8241;"></i>
+                        </div>
+
+                    </div>
+                    <div class="css-container-principal css-banner-lateral">
+                        <img src="@ViewBag.bannerLateral" style="width: 200px; height: 295px;">
+                        <img class="css-banner-lateral-2" src="@ViewBag.bannerLateral_1" style="width: 200px; height: 115px;">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog modal-md css-modal-timer">
+                <div class="modal-content css-modal-border-redondo">
+                    <div class="modal-header css-modal-header">
+                        <div class="modal-title css-modal-title-text">
+                            Banca por Internet
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="css-modal-timer-text text-justify">
+                                    <i class="pull-left fa fa-exclamation-circle fa-4x" style="color: #F56868"></i>
+                                    <span id="hddMessage">@TempData["Message"]</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer css-modal-footer">
+                        <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close">Cerrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--pie de pagina-->
+        <div class="footer">
+            <div class="container">
+                <span class="footer-opcion"><small>Credinka.com</small></span>|
+                <!-- <span class="footer-opcion"><small>Opción Adicional</small></span>|
+                <span class="footer-opcion"><small>Contáctanos</small></span>
+                    -->
+                <span class="pull-right footer-copyright"><small>© 2017 FINANCIERA CREDINKA. Todos los derechos reservados</small></span>
+            </div>
+        </div>
+    </div>
+    <div id="myModal" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center modal-md css-modal-timer" role="document">
+                <div class="modal-content css-modal-border-redondo">
+                    <div class="modal-header css-modal-header">
+                        <div class="modal-title css-modal-title-text">
+                            ¿Necesitas más tiempo?
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="pull-left css-modal-timer-img"><i class="fa fa-sign-out fa-5x"></i></div>
+                                <div class="css-modal-timer-text text-justify">
+                                    <span id="spUsuario"><strong>@ViewBag.nombre</strong></span>, su sesión está a <span id="timer" class="">30 </span> segundos de vencer,
+                                    ¿Necesita más tiempo para realizar alguna consulta adicional?
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer css-modal-footer">
+                        <button type="button" class="btn btn-xs btn-danger" onclick="javascript: fn_option(1);">Cerrar Sesión</button>
+                        <button type="button" class="btn btn-xs btn-primary" data-dismiss="modal">Agregar más tiempo</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="myModal1" class="modal fade" data-backdrop="static" data-keyboard="false" role="dialog">
+        <div class="vertical-alignment-helper">
+            <div class="modal-dialog vertical-align-center modal-md css-modal-timer" role="document">
+                <div class="modal-content css-modal-border-redondo">
+                    <div class="modal-header css-modal-header">
+                        <div class="modal-title css-modal-title-text">
+                            Banca por Internet
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="pull-left css-modal-timer-img"><i class="fa fa-frown-o fa-4x"></i></div>
+                                <div class="css-modal-timer-text text-justify">
+                                   Ha estado inactivo durante algún tiempo, vuelve a ingresar para seguir navegando.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer css-modal-footer">
+                        <button type="button" class="btn btn-xs btn-primary" onclick="javascript: fn_option(1);">Volver a Ingresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="mIMG" class="modal fade" data-dismiss="static" role="dialog" data-keyboard="true" data-backdrop="static">
+        <div class="modal-dialog modal-lg">
+            <div id="dvContent" class="modal-content css-modal-form">
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" defer="defer">
+        @Html.Raw(ViewBag.StartupScript)
+    </script>
+
+</body>
+</html>

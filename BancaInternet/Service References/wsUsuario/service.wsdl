@@ -1,0 +1,248 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="wsUsuario" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import namespace="http://tempuri.org/" />
+      <xsd:import namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import namespace="http://schemas.datacontract.org/2004/07/BancaInternet.EN" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IwsUsuario_WSRegistrarAsociaconUsuario_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSRegistrarAsociaconUsuario" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSRegistrarAsociaconUsuario_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSRegistrarAsociaconUsuarioResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSCambiarClaveTarjeta_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSCambiarClaveTarjeta" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSCambiarClaveTarjeta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSCambiarClaveTarjetaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSRegistrarSeguimientoAccesos_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSRegistrarSeguimientoAccesos" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSRegistrarSeguimientoAccesos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSRegistrarSeguimientoAccesosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSValidaAccesoHomeBanking_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSValidaAccesoHomeBanking" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSValidaAccesoHomeBanking_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSValidaAccesoHomeBankingResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSValidaClaveUnibanca_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSValidaClaveUnibanca" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSValidaClaveUnibanca_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSValidaClaveUnibancaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSOlvideMiClave_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSOlvideMiClave" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSOlvideMiClave_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSOlvideMiClaveResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSListarDatosCliente_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSListarDatosCliente" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSListarDatosCliente_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSListarDatosClienteResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSActualizarInformacion_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSActualizarInformacion" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSActualizarInformacion_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSActualizarInformacionResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSAfiliacionPaso1ValidacionTarjeta_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSAfiliacionPaso1ValidacionTarjeta" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSAfiliacionPaso1ValidacionTarjeta_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSAfiliacionPaso1ValidacionTarjetaResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSActualizarSelloSeguridad_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSActualizarSelloSeguridad" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSActualizarSelloSeguridad_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSActualizarSelloSeguridadResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSListarSellos_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSListarSellos" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSListarSellos_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSListarSellosResponse" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSAfiliacionYActualizacionInformacionP2_InputMessage">
+    <wsdl:part name="parameters" element="tns:WSAfiliacionYActualizacionInformacionP2" />
+  </wsdl:message>
+  <wsdl:message name="IwsUsuario_WSAfiliacionYActualizacionInformacionP2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:WSAfiliacionYActualizacionInformacionP2Response" />
+  </wsdl:message>
+  <wsdl:portType name="IwsUsuario">
+    <wsdl:operation name="WSRegistrarAsociaconUsuario">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSRegistrarAsociaconUsuario" message="tns:IwsUsuario_WSRegistrarAsociaconUsuario_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSRegistrarAsociaconUsuarioResponse" message="tns:IwsUsuario_WSRegistrarAsociaconUsuario_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSCambiarClaveTarjeta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSCambiarClaveTarjeta" message="tns:IwsUsuario_WSCambiarClaveTarjeta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSCambiarClaveTarjetaResponse" message="tns:IwsUsuario_WSCambiarClaveTarjeta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSRegistrarSeguimientoAccesos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSRegistrarSeguimientoAccesos" message="tns:IwsUsuario_WSRegistrarSeguimientoAccesos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSRegistrarSeguimientoAccesosResponse" message="tns:IwsUsuario_WSRegistrarSeguimientoAccesos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSValidaAccesoHomeBanking">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSValidaAccesoHomeBanking" message="tns:IwsUsuario_WSValidaAccesoHomeBanking_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSValidaAccesoHomeBankingResponse" message="tns:IwsUsuario_WSValidaAccesoHomeBanking_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSValidaClaveUnibanca">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSValidaClaveUnibanca" message="tns:IwsUsuario_WSValidaClaveUnibanca_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSValidaClaveUnibancaResponse" message="tns:IwsUsuario_WSValidaClaveUnibanca_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSOlvideMiClave">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSOlvideMiClave" message="tns:IwsUsuario_WSOlvideMiClave_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSOlvideMiClaveResponse" message="tns:IwsUsuario_WSOlvideMiClave_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSListarDatosCliente">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSListarDatosCliente" message="tns:IwsUsuario_WSListarDatosCliente_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSListarDatosClienteResponse" message="tns:IwsUsuario_WSListarDatosCliente_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSActualizarInformacion">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSActualizarInformacion" message="tns:IwsUsuario_WSActualizarInformacion_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSActualizarInformacionResponse" message="tns:IwsUsuario_WSActualizarInformacion_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSAfiliacionPaso1ValidacionTarjeta">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSAfiliacionPaso1ValidacionTarjeta" message="tns:IwsUsuario_WSAfiliacionPaso1ValidacionTarjeta_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSAfiliacionPaso1ValidacionTarjetaResponse" message="tns:IwsUsuario_WSAfiliacionPaso1ValidacionTarjeta_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSActualizarSelloSeguridad">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSActualizarSelloSeguridad" message="tns:IwsUsuario_WSActualizarSelloSeguridad_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSActualizarSelloSeguridadResponse" message="tns:IwsUsuario_WSActualizarSelloSeguridad_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSListarSellos">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSListarSellos" message="tns:IwsUsuario_WSListarSellos_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSListarSellosResponse" message="tns:IwsUsuario_WSListarSellos_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="WSAfiliacionYActualizacionInformacionP2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IwsUsuario/WSAfiliacionYActualizacionInformacionP2" message="tns:IwsUsuario_WSAfiliacionYActualizacionInformacionP2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IwsUsuario/WSAfiliacionYActualizacionInformacionP2Response" message="tns:IwsUsuario_WSAfiliacionYActualizacionInformacionP2_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IwsUsuario" type="tns:IwsUsuario">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="WSRegistrarAsociaconUsuario">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSRegistrarAsociaconUsuario" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSCambiarClaveTarjeta">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSCambiarClaveTarjeta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSRegistrarSeguimientoAccesos">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSRegistrarSeguimientoAccesos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSValidaAccesoHomeBanking">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSValidaAccesoHomeBanking" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSValidaClaveUnibanca">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSValidaClaveUnibanca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSOlvideMiClave">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSOlvideMiClave" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSListarDatosCliente">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSListarDatosCliente" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSActualizarInformacion">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSActualizarInformacion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSAfiliacionPaso1ValidacionTarjeta">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSAfiliacionPaso1ValidacionTarjeta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSActualizarSelloSeguridad">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSActualizarSelloSeguridad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSListarSellos">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSListarSellos" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="WSAfiliacionYActualizacionInformacionP2">
+      <soap:operation soapAction="http://tempuri.org/IwsUsuario/WSAfiliacionYActualizacionInformacionP2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="wsUsuario">
+    <wsdl:port name="BasicHttpBinding_IwsUsuario" binding="tns:BasicHttpBinding_IwsUsuario">
+      <soap:address location="http://localhost:8733/BancaInternet.WS/wsUsuario/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

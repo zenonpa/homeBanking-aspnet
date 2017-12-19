@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Credinka :: Banca por Internet";
+}
+
+@using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, "enctype='application/x-www-form-urlencoded'"))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+    <input type="hidden" name="_form_name" id="_form_name" value="@ViewBag.form_interno">
+    <input type="hidden" id="hddpin1" name="hddpin1">
+    <input type="hidden" id="hddpin2" name="hddpin2">
+    <input type="hidden" id="hddpin3" name="hddpin3">
+    <div class="css-container-principal css-container-color css-border">
+        <div class="col-xs-1">
+            <i class="fa fa fa-key fa-3x" style="color:#EA6C1D;"></i>
+        </div>
+        <div class="col-xs-6 css-title">
+            <span class="css-title-text">Cambio de Contraseña</span><br />
+            <span class="css-title-subtext">@ViewBag.nombre @ViewBag.apellidos</span>
+        </div>
+        <div class="col-xs-2 pull-right css-border-left">
+            <a href="#" id="aSeSe"><img style="width:90px;height:70px;" src="@ViewBag.imagenContenido"></a>
+        </div>
+    </div>
+    <div class="css-container-principal css-margin">
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span><span class="css-text-title-option">INGRESE LOS DATOS</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-detalle">
+                    <colgroup>
+                        <col style="width:20%">
+                        <col>
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td colspan="2">
+                                Eliga y memoriza los 6 dígitos de tu nueva clave Internet (sólo números). Ingrésala haciendo clic en cada cuadro de texto utilizando el teclado virtual.
+                            </td>
+                        </tr>
+                        <tr>
+                            <td rowspan="4">
+                                <img src="data:image;base64,@System.Convert.ToBase64String(ViewBag.ruta.FileContents)" alt="" usemap="#Map" />
+                                <map name="Map" id="Map">
+                                    <area href="javascript: fn_codping(0)" shape="rect" coords="10,7,23,24" />
+                                    <area href="javascript: fn_codping(1)" shape="rect" coords="36,7,50,24" />
+                                    <area href="javascript: fn_codping(2)" shape="rect" coords="61,6,77,24" />
+                                    <area href="javascript: fn_codping(3)" shape="rect" coords="8,31,22,47" />
+                                    <area href="javascript: fn_codping(4)" shape="rect" coords="35,31,51,48" />
+                                    <area href="javascript: fn_codping(5)" shape="rect" coords="62,30,76,48" />
+                                    <area href="javascript: fn_codping(6)" shape="rect" coords="8,55,22,70" />
+                                    <area href="javascript: fn_codping(7)" shape="rect" coords="36,55,50,72" />
+                                    <area href="javascript: fn_codping(8)" shape="rect" coords="62,55,77,72" />
+                                    <area href="javascript: fn_codping(9)" shape="rect" coords="61,80,77,95" />
+                                    <area href="javascript: fn_codping(-1)" shape="rect" coords="6,79,54,96" />
+                                </map>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="css-padding-left">Ingresa tu actual clave de Internet(6 dígitos)</span><br>
+                                <input type="radio" name="clave" id="rClave1" value="0" checked>
+                                <input type="password" id="txtClave1" for="rClave1" class="css-input css-input-movil css-input-select" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="css-padding-left">Ingresa tu nueva clave de Internet(6 dígitos)</span><br>
+                                <input type="radio" name="clave" id="rClave2" value="1">
+                                <input type="password" id="txtClave2" for="rClave2" class="css-input css-input-movil" disabled>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="css-padding-left">Confirma tu nueva clave de Internet(6 dígitos)</span><br>
+                                <input type="radio" name="clave" id="rClave3" value="2">
+                                <input type="password" id="txtClave3" for="rClave3" class="css-input css-input-movil" disabled>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pull-right css-margin-top">
+                    <input type="submit" id="btnSubmit" style="display:none;" />
+                    <button type="button" class="btn btn-xs btn-default" onclick="javascript: fn_option(0);">Cancelar</button>
+                    <button type="button" class="btn btn-xs btn-primary" onclick="javascript: fn_click();">Actualizar Contraseña</button>
+                </div>
+            </div>
+        </div>
+        <br />
+    </div>
+}

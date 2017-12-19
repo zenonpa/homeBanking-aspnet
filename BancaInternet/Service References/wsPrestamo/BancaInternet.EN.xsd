@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/BancaInternet.EN" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/BancaInternet.EN" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfenPrestamo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="enPrestamo" nillable="true" type="tns:enPrestamo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfenPrestamo" nillable="true" type="tns:ArrayOfenPrestamo" />
+  <xs:complexType name="enPrestamo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="iDiasAtraso" type="xs:int" />
+      <xs:element minOccurs="0" name="nTipoCodigoProducto" type="xs:decimal" />
+      <xs:element minOccurs="0" name="nTotalCuotas" type="xs:short" />
+      <xs:element minOccurs="0" name="nTotalCuotasPendientes" type="xs:short" />
+      <xs:element minOccurs="0" name="sCodigoEstado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sCodigoSiscredinka" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sEstadoCuenta" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sFechaVencimiento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sModalidadCredito" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sNombreProducto" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sNumeroCredito" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sSaldoCapital" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sTEA" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sTipoCredito" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="enPrestamo" nillable="true" type="tns:enPrestamo" />
+  <xs:complexType name="ArrayOfenCronograma">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="enCronograma" nillable="true" type="tns:enCronograma" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfenCronograma" nillable="true" type="tns:ArrayOfenCronograma" />
+  <xs:complexType name="enCronograma">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="nCuota" type="xs:int" />
+      <xs:element minOccurs="0" name="nDiasAtraso" type="xs:int" />
+      <xs:element minOccurs="0" name="nTotalCuotas" type="xs:int" />
+      <xs:element minOccurs="0" name="sEstado" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sFecVencimiento" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sFechaPago" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sMontoCuota" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sNumeroCredito" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sSaldoCapital" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="enCronograma" nillable="true" type="tns:enCronograma" />
+</xs:schema>

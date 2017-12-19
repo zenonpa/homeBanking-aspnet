@@ -1,0 +1,451 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D8466290-2EEB-4418-B131-02B266C40E85}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>BancaInternet</RootNamespace>
+    <AssemblyName>BancaInternet</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="CaptchaMvc, Version=2.5.0.0, Culture=neutral, PublicKeyToken=fe46ad421dd3b0e6, processorArchitecture=MSIL">
+      <HintPath>..\packages\CaptchaMvc.Mvc5.1.5.0\lib\net45-full\CaptchaMvc.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp">
+      <HintPath>..\packages\iTextSharp.5.5.7\lib\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Optimization, Version=1.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.0.0\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.0.0\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <Private>True</Private>
+      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\credinkaController.cs" />
+    <Compile Include="Funciones\Exportar.cs" />
+    <Compile Include="Funciones\rnSegRSA.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\wsCuenta\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsDescripcion\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsPrestamo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsTipoCambio\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsUbigeo\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\wsUsuario\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Images\12-piedras.png" />
+    <Content Include="Content\Images\banner-bienvenido.png" />
+    <Content Include="Content\Images\banner-lateral-1.png" />
+    <Content Include="Content\Images\banner-lateral-2.png" />
+    <Content Include="Content\Images\calendar.png" />
+    <Content Include="Content\Images\capcha.png" />
+    <Content Include="Content\Images\dudas.png" />
+    <Content Include="Content\Images\fnd-agua-credinka.png" />
+    <Content Include="Content\Images\ico-clave-.png" />
+    <Content Include="Content\Images\ico-clave-o.fw.png" />
+    <Content Include="Content\Images\ico-consulta-o.png" />
+    <Content Include="Content\Images\ico-consulta.png" />
+    <Content Include="Content\Images\ico-faq-o.png" />
+    <Content Include="Content\Images\ico-faq.png" />
+    <Content Include="Content\Images\ico-ovd-clave-o.png" />
+    <Content Include="Content\Images\ico-ovd-clave.png" />
+    <Content Include="Content\Images\icono01.svg" />
+    <Content Include="Content\Images\img-numero-0.jpg" />
+    <Content Include="Content\Images\img-numero-1.jpg" />
+    <Content Include="Content\Images\img-numero-2.jpg" />
+    <Content Include="Content\Images\img-numero-3.jpg" />
+    <Content Include="Content\Images\img-numero-4.jpg" />
+    <Content Include="Content\Images\img-numero-5.jpg" />
+    <Content Include="Content\Images\img-numero-6.jpg" />
+    <Content Include="Content\Images\img-numero-7.jpg" />
+    <Content Include="Content\Images\img-numero-8.jpg" />
+    <Content Include="Content\Images\img-numero-9.jpg" />
+    <Content Include="Content\Images\img-numero-fondo.jpg" />
+    <Content Include="Content\Images\img-numero-limpiar.jpg" />
+    <Content Include="Content\Images\img-slide-1.png" />
+    <Content Include="Content\Images\img-slide-2.png" />
+    <Content Include="Content\Images\img-slide-3.png" />
+    <Content Include="Content\Images\img-slide-4.png" />
+    <Content Include="Content\Images\logo-intranet.png" />
+    <Content Include="Content\Images\olvide.png" />
+    <Content Include="Content\Images\pig1.png" />
+    <Content Include="Content\Images\preguntas.png" />
+    <Content Include="Content\Images\teclado.png" />
+    <Content Include="Content\Scripts\bootstrap-datepicker.js" />
+    <Content Include="Content\Scripts\bootstrap.js" />
+    <Content Include="Content\Scripts\index.js" />
+    <Content Include="Content\Scripts\jquery-2.1.4.js" />
+    <Content Include="Content\Scripts\CambioClave.js" />
+    <Content Include="Content\Scripts\login.js" />
+    <Content Include="Content\Styles\bootstrap.css" />
+    <Content Include="Content\Styles\datepicker.css" />
+    <Content Include="Content\Styles\font-awesome\css\font-awesome.css" />
+    <Content Include="Content\Styles\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Styles\login.css" />
+    <Content Include="Content\Styles\master.css" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Libs\CaptchaMvc.dll" />
+    <Content Include="Libs\CaptchaMvc.pdb" />
+    <Content Include="Libs\CaptchaMvc.XML" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enUsuarioValida.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enUsuario.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enDescripcion.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enSesion.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enTipoCambio.datasource" />
+    <Content Include="Content\Scripts\ActualizarDatos.js" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enUbigeo.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enDescripcionSiscredinka.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enCuenta.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enPrestamo.datasource" />
+    <Content Include="Properties\DataSources\BancaInternet.EN.enSellos.datasource" />
+    <None Include="Properties\PublishProfiles\LOCAL.pubxml" />
+    <None Include="Properties\PublishProfiles\W2012.pubxml" />
+    <Content Include="Service References\wsPrestamo\BancaInternet.wsPrestamo.enCronograma.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\wsCuenta\BancaInternet.EN.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsCuenta\service.wsdl" />
+    <None Include="Service References\wsCuenta\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsCuenta\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsDescripcion\Arrays.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsDescripcion\BancaInternet.EN.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsDescripcion\service.wsdl" />
+    <None Include="Service References\wsDescripcion\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsDescripcion\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsPrestamo\BancaInternet.EN.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsPrestamo\service.wsdl" />
+    <None Include="Service References\wsPrestamo\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsPrestamo\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsTipoCambio\BancaInternet.EN.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsTipoCambio\service.wsdl" />
+    <None Include="Service References\wsTipoCambio\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsTipoCambio\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsUbigeo\BancaInternet.EN.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsUbigeo\service.wsdl" />
+    <None Include="Service References\wsUbigeo\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsUbigeo\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsUsuario\BancaInternet.EN.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsUsuario\configuration91.svcinfo" />
+    <None Include="Service References\wsUsuario\configuration.svcinfo" />
+    <None Include="Service References\wsUsuario\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\wsDescripcion\configuration91.svcinfo" />
+    <None Include="Service References\wsDescripcion\configuration.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsDescripcion\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\wsTipoCambio\configuration91.svcinfo" />
+    <None Include="Service References\wsTipoCambio\configuration.svcinfo" />
+    <None Include="Service References\wsTipoCambio\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\wsUbigeo\configuration91.svcinfo" />
+    <None Include="Service References\wsUbigeo\configuration.svcinfo" />
+    <None Include="Service References\wsUbigeo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\wsCuenta\configuration91.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsCuenta\configuration.svcinfo">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsCuenta\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\wsPrestamo\configuration91.svcinfo" />
+    <None Include="Service References\wsPrestamo\configuration.svcinfo" />
+    <None Include="Service References\wsPrestamo\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\credinka\ClaveObligatorio.cshtml" />
+    <Content Include="Views\credinka\CambiarSello.cshtml" />
+    <Content Include="Views\credinka\MisPrestamosDetalle.cshtml" />
+    <Content Include="Views\credinka\CronogramaPagos.cshtml" />
+    <Content Include="Views\credinka\MisDPFDetalle.cshtml" />
+    <None Include="Service References\wsUsuario\service.wsdl" />
+    <None Include="Service References\wsUsuario\service.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\wsUsuario\service1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BancaInternet.EN\BancaInternet.EN.csproj">
+      <Project>{c6924d4e-6cb3-4e85-9572-e844c975e0e4}</Project>
+      <Name>BancaInternet.EN</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BancaInternet.UTL\BancaInternet.UTL.csproj">
+      <Project>{8e2d7f3a-5b45-4688-b605-de9dddc337dd}</Project>
+      <Name>BancaInternet.UTL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Content\Styles\bootstrap.css.map" />
+    <Content Include="Content\Styles\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Styles\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Styles\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Styles\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Styles\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Styles\fonts\glyphicons-halflings-regular.woff2" />
+    <None Include="Project_Readme.html" />
+    <Content Include="Views\credinka\Logueo.cshtml" />
+    <Content Include="Views\credinka\Principal.cshtml" />
+    <Content Include="Views\credinka\PreLoad.cshtml" />
+    <Content Include="Views\credinka\Error.cshtml" />
+    <None Include="Properties\PublishProfiles\Administrador.pubxml" />
+    <Content Include="Views\credinka\MisCuentas.cshtml" />
+    <Content Include="Views\credinka\MisPrestamos.cshtml" />
+    <Content Include="Views\credinka\MisCuentasDetalle.cshtml" />
+    <Content Include="Views\credinka\ActualizarDatos.cshtml" />
+    <Content Include="Views\credinka\CambioContrasena.cshtml" />
+    <Content Include="Views\credinka\GenerarClave1.cshtml" />
+    <Content Include="Views\credinka\GenerarClave2.cshtml" />
+    <Content Include="Views\credinka\GenerarClave3.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\wsCuenta\" />
+    <WCFMetadataStorage Include="Service References\wsDescripcion\" />
+    <WCFMetadataStorage Include="Service References\wsPrestamo\" />
+    <WCFMetadataStorage Include="Service References\wsTipoCambio\" />
+    <WCFMetadataStorage Include="Service References\wsUbigeo\" />
+    <WCFMetadataStorage Include="Service References\wsUsuario\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>27067</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:27067/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

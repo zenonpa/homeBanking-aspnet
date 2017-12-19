@@ -1,0 +1,78 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@using BancaInternet
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en" oncontextmenu="return false">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width" />
+    <title>Credinka :: Banca por Internet</title>
+
+    <meta name="description" content="HomeBanking">
+    <meta name="author" content="Credinka S.A.">
+
+    @Styles.Render("~/credinka/cssIngreso")
+    <script src="@Url.Content("~")Content/Scripts/jquery-2.1.4.js"></script>
+    <script src="@Url.Content("~")Content/Scripts/bootstrap.js"></script>
+    <style>
+        @@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+        @@font-face {
+            font-family: 'FontAwesome';
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+    <script type="text/javascript">
+        var contador = 2;
+        $(document).ready(function () {
+            $("#btnSub").click();
+        });
+    </script>
+</head>
+<body class="noselect" style="height:100%;">
+    <div class="css-lineaSuperior"></div>
+    <div class="wrap">
+        <div class="container css-container-center">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="css-container-principal-2x css-fondo-blanco ">
+                        <div class="row css-row-margin0">
+                            <div class="col-xs-12 css-text-destroy" style="text-align:center;margin-top:0px;padding-top:0px;">
+                                <img class="css-banner-image" src="@Url.Content("~")Content/Images/logo-intranet.png">
+                                <br />
+                                <br />
+                                Ingresando a Banca por Internet.
+                                <br />
+                                La página se está cargando
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, "enctype='application/x-www-form-urlencoded'"))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+                    <input type="submit" style="display:none" id="btnSub" />
+                }
+            </div>
+        </div>
+        <div class="footer">
+            <div class="container">
+                <span class="footer-opcion"><small>Credinka.com</small></span>|
+                <span class="footer-opcion"><small>Opción Adicional</small></span>|
+                <span class="footer-opcion"><small>Contáctanos</small></span>
+                <span class="pull-right footer-copyright"><small>© 2017 FINANCIERA CREDINKA. Todos los derechos reservados</small></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

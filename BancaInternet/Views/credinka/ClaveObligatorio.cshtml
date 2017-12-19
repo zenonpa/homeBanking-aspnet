@@ -1,0 +1,209 @@
+﻿@using CaptchaMvc.HtmlHelpers
+@using CaptchaMvc.Models
+@using BancaInternet
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Credinka :: Banca por Internet</title>
+
+    <meta name="description" content="HomeBanking">
+    <meta name="author" content="Credinka S.A.">
+
+    @Styles.Render("~/credinka/cssIngreso")
+    @Scripts.Render("~/credinka/jsCambio")
+
+    <style>
+        @@import url("http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&lang=en");
+        @@font-face {
+            font-family: 'FontAwesome';
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?v=4.3.0');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.eot?#iefix&v=4.3.0') format('embedded-opentype');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff2?v=4.3.0') format('woff2');
+            src: url('@Url.Content("~")Content/Styles/font-awesome/fonts/fontawesome-webfont.woff?v=4.3.0') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        @@font-face {
+            font-family: 'Glyphicons Halflings';
+            src: url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.eot');
+            src: url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.woff2') format('woff2'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.woff') format('woff'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+                url('@Url.Content("~")Content/Styles/fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+        }
+
+    </style>
+
+    <script type="text/javascript">
+        var VG_RUTA_SERVIDOR = "@Url.Content("~")";
+    </script>
+
+</head>
+<body class="noselect css-marca">
+    <div class="css-lineaSuperior"></div>
+    <div class="wrap">
+        <div class="container css-container-center">
+
+            <!-- Modal -->
+            <div id="myModal1" class="modal fade" data-dismiss="static" role="dialog" data-keyboard="true" data-backdrop="static">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content css-modal-form">
+                        @using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+                        {
+                            @Html.AntiForgeryToken()
+                            <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+                            <input type="hidden" id="hddcod" name="hddcod" value="1">
+                            <input type="hidden" id="hddpin1" name="hddpin1">
+                            <input type="hidden" id="hddpin2" name="hddpin2">
+                            <input type="hidden" id="hddpin3" name="hddpin3">
+
+                            @Html.Hidden(MvcApplication.MultipleParameterKey, 2)
+                            <div class="modal-header css-modal-form-header">
+                                <div class="modal-title">
+                                    <i class="fa fa-refresh fa-3x pull-left" style="color:#F58B52;"></i>
+                                    <span class="css-modal-title">Actualizar clave de Internet (6 dígitos)</span>
+                                    <br />
+                                    <span class="css-modal-sub-title">Acción Obligatoria</span>
+                                </div>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-xs-12">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <table class="table-responsive css-table-detalle">
+                                                <colgroup>
+                                                    <col style="width:20%">
+                                                    <col>
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            Elige y memoriza los 6 dígitos de tu nueva clave Internet (sólo números). Ingrésala haciendo clic en cada cuadro de texto utilizando el teclado virtual
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td rowspan="4">
+                                                            <img src="data:image;base64,@System.Convert.ToBase64String(ViewBag.ruta.FileContents)" alt="" usemap="#Map" />
+                                                            <map name="Map" id="Map">
+                                                                <area alt="0" href="javascript: fn_codping(0)" shape="rect" coords="10,7,23,24" />
+                                                                <area alt="1" href="javascript: fn_codping(1)" shape="rect" coords="36,7,50,24" />
+                                                                <area alt="2" href="javascript: fn_codping(2)" shape="rect" coords="61,6,77,24" />
+                                                                <area alt="3" href="javascript: fn_codping(3)" shape="rect" coords="8,31,22,47" />
+                                                                <area alt="4" href="javascript: fn_codping(4)" shape="rect" coords="35,31,51,48" />
+                                                                <area alt="5" href="javascript: fn_codping(5)" shape="rect" coords="62,30,76,48" />
+                                                                <area alt="6" href="javascript: fn_codping(6)" shape="rect" coords="8,55,22,70" />
+                                                                <area alt="7" href="javascript: fn_codping(7)" shape="rect" coords="36,55,50,72" />
+                                                                <area alt="8" href="javascript: fn_codping(8)" shape="rect" coords="62,55,77,72" />
+                                                                <area alt="9" href="javascript: fn_codping(9)" shape="rect" coords="61,80,77,95" />
+                                                                <area alt="-1" href="javascript: fn_codping(-1)" shape="rect" coords="6,79,54,96" />
+                                                            </map>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="css-padding-left">Ingresa tu actual clave de Internet(6 dígitos)</span><br>
+                                                            <div class="col-input-1 css-padding-right" style="width: 20px;">
+                                                                <input type="radio" name="clave" id="rClave1" value="0" checked="">
+                                                            </div>
+                                                            <div class="col-input-3 css-padding-right">
+                                                                <input type="password" id="txtClave1" for="rClave1" class="css-input css-input-4 css-input-movil" disabled="">
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="css-padding-left">Ingresa tu nueva clave de Internet(6 dígitos)</span><br>
+                                                            <div class="col-input-1 css-padding-right" style="width: 20px;">
+                                                                <input type="radio" name="clave" id="rClave2" value="1">
+                                                            </div>
+                                                            <div class="col-input-3 css-padding-right">
+                                                                <input type="password" id="txtClave2" for="rClave2" class="css-input css-input-movil" disabled>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>
+                                                            <span class="css-padding-left">Confirma tu nueva clave de Internet(6 dígitos)</span><br>
+                                                            <div class="col-input-1 css-padding-right" style="width: 20px;">
+                                                                <input type="radio" name="clave" id="rClave3" value="2">
+                                                            </div>
+                                                            <div class="col-input-3 css-padding-right">
+                                                                <input type="password" id="txtClave3" for="rClave3" class="css-input css-input-movil" disabled>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <div class="col-lg-12 form-group-margin0">
+                                                                <div class="pull-left">
+                                                                    <div class="row">
+                                                                        <div class="col-xs-12 css-div-capcha">
+                                                                            @Html.Captcha("Actualizar Imagen", null, 5, "Debe ingresar el texto.", true, new ParameterModel(MvcApplication.MultipleParameterKey, 2))
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                    <br />
+                                </div>
+                            </div>
+                            <div class="modal-footer css-modal-form-footer">
+                                <input type="submit" id="btnSubmit" style="display:none;" />
+                                <button type="button" class="btn btn-xs btn-danger" id="modal-close1" onclick="fn_click(0);">Cerrar Sesión</button>
+                                <button type="button" class="btn btn-xs btn-primary" onclick="fn_click(1);">Actualizar Clave</button>
+                            </div>
+                        }
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div class="modal fade" id="myModal" role="dialog">
+                <div class="modal-dialog modal-md css-modal-timer">
+                    <div class="modal-content css-modal-border-redondo">
+                        <div class="modal-header css-modal-header">
+                            <div class="modal-title css-modal-title-text">
+                                Banca por Internet
+                            </div>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <div class="css-modal-timer-text text-justify">
+                                        <i class="pull-left fa fa-exclamation-circle fa-4x" style="color: #F56868"></i>
+                                        <span id="hddMessage">@TempData["Message"]</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer css-modal-footer">
+                            <button type="button" class="btn btn-xs btn-danger" data-dismiss="modal" id="modal-close">Cerrar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="footer">
+            <div class="container">
+                <span class="footer-opcion"><small>Credinka.com</small></span>|
+                <span class="footer-opcion"><small>Opción Adicional</small></span>|
+                <span class="footer-opcion"><small>Contáctanos</small></span>
+                <span class="pull-right footer-copyright"><small>© 2017 FINANCIERA CREDINKA. Todos los derechos reservados</small></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

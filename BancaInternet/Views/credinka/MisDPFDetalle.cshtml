@@ -1,0 +1,183 @@
+﻿@{
+    ViewBag.Title = "Credinka :: Banca por Internet";
+}
+
+@using (Html.BeginForm("BancaPorInternet", "credinka", FormMethod.Post, "enctype='application/x-www-form-urlencoded'"))
+{
+    @Html.AntiForgeryToken()
+    <input type="hidden" name="form_name" value="@ViewBag.form_validate">
+    <input type="hidden" name="_form_name" id="_form_name" value="@ViewBag.form_interno">
+    <input type="hidden" name="hddevent1" id="hddevent1" value="@ViewBag.enCuenta.sNumeroCuenta">
+    <input type="hidden" name="hddevent2" id="hddevent2" value="0">
+    <input type="submit" name="hddsubmit_b" id="hddsubmit_b" style="display:none;" />
+    
+    <div class="css-container-principal css-container-color css-border">
+        <div class="col-xs-1">
+            <i class="fa fa-bar-chart fa-3x" style="color:#EA6C1D;"></i>
+        </div>
+        <div class="col-xs-6 css-title">
+            <span class="css-title-text">Mis Ahorros</span><br />
+            <span class="css-title-subtext">@ViewBag.enCuenta.sNombreProducto (@ViewBag.enCuenta.sNumeroCuenta)</span>
+        </div>
+        <div class="col-xs-2 pull-right css-border-left">
+            <a href="#" id="aSeSe"><img style="width:90px;height:70px;" src="@ViewBag.imagenContenido"></a>
+        </div>
+    </div>
+
+    <div class="css-container-principal css-margin" id="conteiner">
+        <div class="pull-right option">
+            <a href="#" title="Imprimir" class="css-ico" onclick="printDocument.print($('#conteiner'))"><i class="fa fa-print fa-lg" style="color:#898989;"></i></a>
+            <a href="#" title="Exportar PDF" class="css-ico" onclick="fn_ir('@ViewBag.enCuenta.sNumeroCuenta',4)"><i class="fa fa-file-pdf-o fa-lg" style="color:#F0877B;"></i></a>
+            <!-- <a href="#" id="ex_x_d_f" title="Exportar Excel" class="css-ico"><i class="fa fa-file-excel-o fa-lg" style="color:#1D804C;"></i></a>
+                -->
+        </div>
+        <div class="row">
+            <div class="col-lg-12 css-margin-top">
+                <span class="fa-stack">
+                    <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                    <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                </span><span class="css-text-title-option">DETALLE DE LA CUENTA</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <table class="table-responsive css-table-detalle">
+                    <colgroup>
+                        <col width="20%" />
+                        <col width="40%" />
+                        <col width="20%" />
+                        <col width="20%" />
+                    </colgroup>
+                    <tbody>
+                        <tr>
+                            <td class="cabecera">Nombre del cliente</td>
+                            <td colspan="3">@ViewBag.enCuenta.sNombreCompletoCliente</td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">Número de cuenta</td>
+                            <td>@ViewBag.enCuenta.sNumeroCuenta</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">Código de cliente</td>
+                            <td>@ViewBag.enCuenta.sCodigoSiscredinka</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">Familia de Producto</td>
+                            <td>@ViewBag.enCuenta.sProducto</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">Producto</td>
+                            <td>@ViewBag.enCuenta.sNombreProducto</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td class="cabecera">Saldo Contable</td>
+                            <td>@ViewBag.enCuenta.sSaldoContable</td>
+                            <td class="cabecera">Saldo Disponible</td>
+                            <td>@ViewBag.enCuenta.sSaldoDisponible</td>
+                        </tr>
+                        @if (@ViewBag.enCuenta.sFechaVencimiento != "01/01/1900")
+                        {
+                            <tr>
+                                <td class="cabecera">Fecha Vencimiento </td>
+                                <td>@ViewBag.enCuenta.sFechaVencimiento</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                @if (ViewBag.lstDetalleCuenta == null)
+                {
+                    <div class="pull-right css-margin-top">
+                        <button type="submit" id="btnVer" class="btn btn-xs btn-primary">Ver Movimientos</button>
+                    </div>
+                }
+            </div>
+        </div>
+        <br />
+        @if (ViewBag.lstDetalleCuenta != null)
+        {
+            <div class="row">
+                <div class="col-lg-12 css-margin-top">
+                    <span class="fa-stack">
+                        <i class="fa fa-square-o fa-stack-2x" style="color:#EA6C1D;"></i>
+                        <i class="fa fa-square fa-stack-1x" style="color:#EA6C1D;"></i>
+                    </span>
+                    <span class="css-text-title-option">MOVIMIENTOS</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="pull-right css-table-list-option">
+                        @Html.DropDownList("selectTotal", (SelectList)ViewBag.list)
+                    </div>
+                    <table class="table-responsive css-table-list" width="96%">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Fecha de movimiento</th>
+                                <th class="text-center">Nro. de Transacción</th>
+                                <th class="text-center">Movimiento</th>
+                                <th class="text-center">Canal</th>
+                                <th class="text-center">Importe de Movimiento</th>
+                                <th class="text-center">Moneda de Pago</th>
+                                <th class="text-center">Signo</th>
+                                <th class="text-center">Importe</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var reg in ViewBag.lstDetalleCuenta)
+                            {
+                                <tr>
+                                    <td class="text-center">@reg.sFechaMovimiento</td>
+                                    <td class="text-center">@reg.nNumeroTransaccion</td>
+                                    <td class="text-left">@reg.sDescripcionMovimiento</td>
+                                    <td class="text-center">@reg.sCanal</td>
+                                    <td class="text-right">@reg.sMontoMovimiento</td>
+                                    <td class="text-right">@reg.sTipoMoneda</td>
+                                    <td class="text-center">@reg.sSigno</td>
+                                    <td class="text-right">@reg.sSaldoContable</td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <input type="submit" id="submit" style="display:none;" />
+            <input type="hidden" name="hdc_f" value="1" />
+            <script contenteditable="false">
+                (function ($) {
+                    $("[name='selectTotal']").change(function () {
+                        $("#hddevent2").val("1");
+                        LoadingDialog.show();
+                        $("#submit").click();
+                    });
+                }(jQuery));
+            </script>
+        }
+        else
+        {
+            <input type="hidden" name="hdc_f" value="0" />
+            <input type="hidden" name="selectTotal" value="5" />
+            <script contenteditable="false">
+                (function ($) {
+                    $("#btnVer").click(function () {
+                        $("#hddevent2").val("1");
+                        LoadingDialog.show();
+                    });
+                }(jQuery));
+            </script>
+
+
+        }
+    </div>
+}
+
+

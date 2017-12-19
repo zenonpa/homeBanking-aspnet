@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="4fcde375-4266-4157-9dcc-3c32a5a8ab6a" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8733/BancaInternet.WS/wsDescripcion/mex" Protocol="mex" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="service.wsdl" MetadataType="Wsdl" ID="5ae6776f-67e9-4535-a1c5-0e20cc1fb9e1" SourceId="1" SourceUrl="http://localhost:8733/BancaInternet.WS/wsDescripcion/mex" />
+    <MetadataFile FileName="service.xsd" MetadataType="Schema" ID="059ff222-66a0-443a-a7d4-deafaea25d78" SourceId="1" SourceUrl="http://localhost:8733/BancaInternet.WS/wsDescripcion/mex" />
+    <MetadataFile FileName="service1.xsd" MetadataType="Schema" ID="a5b7e62a-540c-4e4b-a70a-f3032f4d1c66" SourceId="1" SourceUrl="http://localhost:8733/BancaInternet.WS/wsDescripcion/mex" />
+    <MetadataFile FileName="BancaInternet.EN.xsd" MetadataType="Schema" ID="53627cd5-8321-423b-889c-d68701a6c166" SourceId="1" SourceUrl="http://localhost:8733/BancaInternet.WS/wsDescripcion/mex" />
+    <MetadataFile FileName="Arrays.xsd" MetadataType="Schema" ID="f22a33f3-a70a-4809-b55d-363d46a1997e" SourceId="1" SourceUrl="http://localhost:8733/BancaInternet.WS/wsDescripcion/mex" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
